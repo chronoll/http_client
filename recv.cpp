@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <string.h>
 
 using namespace std;
 
@@ -30,16 +30,10 @@ int main() {
         return 1;
     }
 
-    int sender = 1;
     int receiver = 2;
-    string message = "This messeage is sent from 1 to 2";
-    string body = "MESSAGE=" + message + "&SENDER=" + to_string(sender) + "&RECEIVER=" + to_string(receiver);
-    string request = "POST /http_server/recv.php HTTP/1.1\r\n"
-                "Host: " + host + "\r\n"
-                "Connection: close\r\n"
-                "Content-Type: application/x-www-form-urlencoded\r\n"
-                "Content-Length: " + to_string(body.size()) + "\r\n\r\n" +
-                body;
+    string request = "GET /http_server/send.php?RECEIVER=" + to_string(receiver) + " HTTP/1.1\r\n"
+                     "Host: " + host + "\r\n"
+                     "Connection: close\r\n\r\n";
 
     if (send(sock, request.c_str(), request.size(), 0) < 0) {
         cerr << "send error" << endl;
