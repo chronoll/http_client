@@ -30,7 +30,14 @@ int main() {
         return 1;
     }
 
-    string request = "GET / HTTP/1.1\r\nHost: " + host + "\r\nConnection: close\r\n\r\n";
+    string body = "Hello, Server!";
+    string request = "POST /http_server/recv.php HTTP/1.1\r\n"
+                "Host: " + host + "\r\n"
+                "Connection: close\r\n"
+                "Content-Type: text/plain\r\n"
+                "Content-Length: " + to_string(body.size()) + "\r\n\r\n" +
+                body;
+
     if (send(sock, request.c_str(), request.size(), 0) < 0) {
         cerr << "send error" << endl;
         return 1;
