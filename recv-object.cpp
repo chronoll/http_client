@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int receiver = 3;
+int id = 3;
 string object_path = "objects/temp";
 
 int main() {
@@ -34,7 +34,7 @@ int main() {
         return 1;
     }
 
-    string request = "GET /http_server/send-object.php?RECEIVER=" + to_string(receiver) + " HTTP/1.1\r\n"
+    string request = "GET /http_server/send-object.php?ID=" + to_string(id) + " HTTP/1.1\r\n"
                      "Host: " + host + "\r\n"
                      "Connection: close\r\n\r\n";
 
