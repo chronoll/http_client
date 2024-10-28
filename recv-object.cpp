@@ -8,10 +8,15 @@
 
 using namespace std;
 
-int id = 3;
-string object_path = "objects/temp";
+int main(int argc, char** argv) {
+    if (argc < 2) {
+        cerr << "Usage: " << argv[0] << " <id>" << endl;
+        return 1;
+    }
 
-int main() {
+    int id = stoi(argv[1]);  // コマンドライン引数からidを設定
+    string object_path = "objects/temp_" + to_string(id);
+
     unsigned short port = 80;
     string host = "127.0.0.1";
 
