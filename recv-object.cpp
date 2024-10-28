@@ -43,41 +43,50 @@ int main() {
         return 1;
     }
 
-    /* バイナリを書き込むファイルを開く */
-    ofstream outputFile(object_path, ios::binary);  // バイナリモード
+    char buffer[1024];
+    int len;
+    bool headerEnded = false;
+    string response;
+
+    while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
+        response.append(buffer, len);
+
+        if (!headerEnded) {
+            size_t pos = response.find("\r\n\r\n");
+            if (pos != string::npos) {
+                string header = response.substr(0, pos);
+                
+                // ステータスコードを確認
+                size_t statusPos = header.find(" ");
+                if (statusPos != string::npos && statusPos + 4 <= header.size()) {
+                    int statusCode = stoi(header.substr(statusPos + 1, 3));
+                    if (statusCode != 200) {
+                        string body = response.substr(pos + 4);  // ボディ部分を取得
+                        cerr << "Error from server: " << body << endl;
+                        cerr << "Header: " << header << endl;
+                        close(sock);
+                        return 1;
+                    }
+                }
+
+                headerEnded = true;
+                response = response.substr(pos + 4);
+            }
+        }
+    }
+
+    ofstream outputFile(object_path, ios::binary);
     if (!outputFile.is_open()) {
         cerr << "file open error" << endl;
         return 1;
     }
 
-    char buffer[1024];
-    int len;
-    bool headerEnded = false;
-
-    /* データを受信 */
-    while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
-        if (!headerEnded) {
-            // HTTPレスポンスヘッダーをスキップ
-            string response(buffer, len);
-            size_t pos = response.find("\r\n\r\n");
-            if (pos != string::npos) {
-                // ヘッダーの終わりからバイナリを書き出す
-                size_t offset = pos + 4;
-                outputFile.write(buffer + offset, len - offset);
-                headerEnded = true;
-            }
-        } else {
-            // スキップした後のバイナリを保存
-            outputFile.write(buffer, len);
-        }
-    }
-    
+    outputFile.write(response.c_str(), response.size());
     outputFile.close();
     close(sock);
 
     cout << "File saved" << endl;
 
-    /* ファイルを実行 */
     string chmodCommand = "chmod +x " + object_path;
     system(chmodCommand.c_str());
 
