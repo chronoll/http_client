@@ -52,6 +52,7 @@ int main(int argc, char** argv) {
     int len;
     bool headerEnded = false;
     string response;
+    string mpiRank;
 
     while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
         response.append(buffer, len);
@@ -72,6 +73,13 @@ int main(int argc, char** argv) {
                         close(sock);
                         return 1;
                     }
+                }
+
+                size_t mpiRankPos = header.find("MPI-Rank: ");
+                if (mpiRankPos != string::npos) {
+                    size_t endPos = header.find("\r\n", mpiRankPos);
+                    mpiRank = header.substr(mpiRankPos + 10, endPos - mpiRankPos - 10);
+                    cout << "MPI-Rank: " << mpiRank << endl;
                 }
 
                 headerEnded = true;
@@ -95,7 +103,7 @@ int main(int argc, char** argv) {
     string chmodCommand = "chmod +x " + object_path;
     system(chmodCommand.c_str());
 
-    string execCommand = "./" + object_path;
+    string execCommand = "./" + object_path + " " + mpiRank;
     int ret = system(execCommand.c_str());
     if (ret != 0) {
         cerr << "Execution failed with code " << ret << endl;
