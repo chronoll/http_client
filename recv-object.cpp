@@ -158,7 +158,7 @@ int main(int argc, char** argv) {
 
     string filename = "result_" + to_string(id);
 
-    string request_ = "POST /http_server/recieve-result.php HTTP/1.1\r\n"
+    string request_ = "POST /http_server/receive-result.php HTTP/1.1\r\n"
                  "Host: " + host + "\r\n"
                  "Content-Type: application/octet-stream\r\n"
                  "X-Filename: " + filename + "\r\n"
