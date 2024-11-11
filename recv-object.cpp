@@ -16,6 +16,7 @@ int main(int argc, char** argv) {
 
     int id = stoi(argv[1]);  // コマンドライン引数からidを設定
     string object_path = "objects/temp_" + to_string(id);
+    string result_file_path = "results/result_" + to_string(id);
 
     unsigned short port = 80;
     string host = "127.0.0.1";
@@ -103,11 +104,33 @@ int main(int argc, char** argv) {
     string chmodCommand = "chmod +x " + object_path;
     system(chmodCommand.c_str());
 
+    // バイナリを実行して標準出力の内容を別ファイルに書き込む
     string execCommand = "./" + object_path + " " + mpiRank;
-    int ret = system(execCommand.c_str());
-    if (ret != 0) {
-        cerr << "Execution failed with code " << ret << endl;
+    FILE *pipe = popen(execCommand.c_str(), "r");
+    if (pipe == NULL) {
+        cerr << "popen failed" << endl;
+        return 1;
     }
+
+    ofstream resultFile(result_file_path);
+    if (!resultFile.is_open()) {
+        cerr << "result file open error" << endl;
+        return 1;
+    }
+
+    char buf[1024];
+    while (fgets(buf, sizeof(buf), pipe) != NULL) {
+        resultFile << buf;
+    }
+
+    int ret = pclose(pipe);
+    if (ret == -1) {
+        cerr << "pclose failed" << endl;
+        return 1;
+    }
+
+    cout << "Result saved" << endl;
+    resultFile.close();
 
     return 0;
 }
