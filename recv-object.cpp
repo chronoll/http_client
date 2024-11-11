@@ -132,5 +132,62 @@ int main(int argc, char** argv) {
     cout << "Result saved" << endl;
     resultFile.close();
 
+    /* create socket */
+    int sock_ = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock_ < 0) {
+        cerr << "socket error" << endl;
+        return 1;
+    }
+
+    /* connect to server */
+    if (connect(sock_, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+        cerr << "connect error" << endl;
+        return 1;
+    }
+
+    ifstream resultFileStream(result_file_path, ios::in | ios::binary);
+    if (!resultFileStream.is_open()) {
+        cerr << "result file open error" << endl;
+        return 1;
+    }
+
+    // ファイルサイズを取得
+    resultFileStream.seekg(0, ios::end);
+    size_t fileSize = resultFileStream.tellg();
+    resultFileStream.seekg(0, ios::beg);
+
+    string filename = "result_" + to_string(id);
+
+    string request_ = "POST /http_server/recieve-result.php HTTP/1.1\r\n"
+                 "Host: " + host + "\r\n"
+                 "Content-Type: application/octet-stream\r\n"
+                 "X-Filename: " + filename + "\r\n"
+                 "Content-Length: " + to_string(fileSize) + "\r\n"
+                 "Connection: close\r\n\r\n";
+
+    // HTTPリクエストヘッダを送信
+    if (send(sock_, request_.c_str(), request_.size(), 0) < 0) {
+        cerr << "send error (header)" << endl;
+        resultFileStream.close();
+        close(sock_);
+        return 1;
+    }
+
+    // ファイルデータを送信
+    char sendBuf[1024];
+    while (resultFileStream.read(sendBuf, sizeof(sendBuf)) || resultFileStream.gcount() > 0) {
+        size_t bytesRead = resultFileStream.gcount();
+        if (send(sock_, sendBuf, bytesRead, 0) < 0) {
+            cerr << "send error (file data)" << endl;
+            resultFileStream.close();
+            close(sock_);
+            return 1;
+        }
+    }
+
+    resultFileStream.close();
+
+    close(sock_);
+
     return 0;
 }
