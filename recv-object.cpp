@@ -54,6 +54,7 @@ int main(int argc, char** argv) {
     bool headerEnded = false;
     string response;
     string mpiRank;
+    string groupID;
 
     while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
         response.append(buffer, len);
@@ -81,6 +82,13 @@ int main(int argc, char** argv) {
                     size_t endPos = header.find("\r\n", mpiRankPos);
                     mpiRank = header.substr(mpiRankPos + 10, endPos - mpiRankPos - 10);
                     cout << "MPI-Rank: " << mpiRank << endl;
+                }
+
+                size_t groupIDPos = header.find("Group-ID: ");
+                if (groupIDPos != string::npos) {
+                    size_t endPos = header.find("\r\n", groupIDPos);
+                    groupID = header.substr(groupIDPos + 10, endPos - groupIDPos - 10);
+                    cout << "Group-ID: " << groupID << endl;
                 }
 
                 headerEnded = true;
@@ -158,7 +166,7 @@ int main(int argc, char** argv) {
 
     string filename = "result_" + to_string(id);
 
-    string request_ = "POST /http_server/receive-result.php?ID=" + to_string(id) + " HTTP/1.1\r\n"
+    string request_ = "POST /http_server/receive-result.php?ID=" + to_string(id) + "&RANK=" + mpiRank + "&GROUP=" + groupID + " HTTP/1.1\r\n"
                  "Host: " + host + "\r\n"
                  "Content-Type: application/octet-stream\r\n"
                  "X-Filename: " + filename + "\r\n"
