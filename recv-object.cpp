@@ -8,20 +8,35 @@
 
 using namespace std;
 
+unsigned short port = 80;
+string host = "127.0.0.1";
+
 string extractHeaderValue(const string &header, const string &key);
 
+/* MPIのrankをコマンドラインで指定して実行*/
 int main(int argc, char** argv) {
     if (argc < 2) {
         cerr << "Usage: " << argv[0] << " <id>" << endl;
         return 1;
     }
 
+    char buffer[1024];
+    int len;
+    bool headerEnded = false;
+    string response;
+    string mpiRank;
+    string groupID;
+
     int id = stoi(argv[1]);  // コマンドライン引数からidを設定
     string object_path = "objects/temp_" + to_string(id);
     string result_file_path = "results/result_" + to_string(id);
 
-    unsigned short port = 80;
-    string host = "127.0.0.1";
+    /* create address */
+    struct sockaddr_in addr;
+    memset(&addr, 0, sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(port);
+    addr.sin_addr.s_addr = inet_addr(host.c_str());
 
     /* create socket */
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -29,12 +44,6 @@ int main(int argc, char** argv) {
         cerr << "socket error" << endl;
         return 1;
     }
-
-    struct sockaddr_in addr;
-    memset(&addr, 0, sizeof(addr));
-    addr.sin_family = AF_INET;
-    addr.sin_port = htons(port);
-    addr.sin_addr.s_addr = inet_addr(host.c_str());
 
     /* connect to server */
     if (connect(sock, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
@@ -46,17 +55,11 @@ int main(int argc, char** argv) {
                      "Host: " + host + "\r\n"
                      "Connection: close\r\n\r\n";
 
+    /* send request */
     if (send(sock, request.c_str(), request.size(), 0) < 0) {
         cerr << "send error" << endl;
         return 1;
     }
-
-    char buffer[1024];
-    int len;
-    bool headerEnded = false;
-    string response;
-    string mpiRank;
-    string groupID;
 
     while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
         response.append(buffer, len);
@@ -66,7 +69,7 @@ int main(int argc, char** argv) {
             if (pos != string::npos) {
                 string header = response.substr(0, pos);
                 
-                // ステータスコードを確認
+                /* ステータスコードを確認 */
                 size_t statusPos = header.find(" ");
                 if (statusPos != string::npos && statusPos + 4 <= header.size()) {
                     int statusCode = stoi(header.substr(statusPos + 1, 3));
@@ -90,23 +93,23 @@ int main(int argc, char** argv) {
             }
         }
     }
+    close(sock);
 
+    /* バイナリをローカルに保存 */
     ofstream outputFile(object_path, ios::binary);
     if (!outputFile.is_open()) {
         cerr << "file open error" << endl;
         return 1;
     }
-
     outputFile.write(response.c_str(), response.size());
     outputFile.close();
-    close(sock);
-
     cout << "File saved" << endl;
 
+    /* バイナリに実行権限を付与 */
     string chmodCommand = "chmod +x " + object_path;
     system(chmodCommand.c_str());
 
-    // バイナリを実行して標準出力の内容を別ファイルに書き込む
+    /* バイナリを実行して標準出力の内容を別ファイルに書き込む */
     string execCommand = "./" + object_path + " " + mpiRank;
     FILE *pipe = popen(execCommand.c_str(), "r");
     if (pipe == NULL) {
@@ -153,7 +156,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    // ファイルサイズを取得
+    /* ファイルサイズを取得 */
     resultFileStream.seekg(0, ios::end);
     size_t fileSize = resultFileStream.tellg();
     resultFileStream.seekg(0, ios::beg);
@@ -167,7 +170,7 @@ int main(int argc, char** argv) {
                  "Content-Length: " + to_string(fileSize) + "\r\n"
                  "Connection: close\r\n\r\n";
 
-    // HTTPリクエストヘッダを送信
+    /* HTTPリクエストヘッダを送信 */
     if (send(sock_, request_.c_str(), request_.size(), 0) < 0) {
         cerr << "send error (header)" << endl;
         resultFileStream.close();
@@ -175,7 +178,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    // ファイルデータを送信
+    /* ファイルデータを送信 */
     char sendBuf[1024];
     while (resultFileStream.read(sendBuf, sizeof(sendBuf)) || resultFileStream.gcount() > 0) {
         size_t bytesRead = resultFileStream.gcount();
@@ -194,6 +197,7 @@ int main(int argc, char** argv) {
     return 0;
 }
 
+/* HTTPヘッダから特定の変数を抽出 */
 string extractHeaderValue(const string &header, const string &key) {
     size_t keyPos = header.find(key + ": ");
     if (keyPos != string::npos) {
