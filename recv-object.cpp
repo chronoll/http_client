@@ -8,6 +8,8 @@
 
 using namespace std;
 
+string extractHeaderValue(const string &header, const string &key);
+
 int main(int argc, char** argv) {
     if (argc < 2) {
         cerr << "Usage: " << argv[0] << " <id>" << endl;
@@ -76,20 +78,12 @@ int main(int argc, char** argv) {
                         return 1;
                     }
                 }
+                
+                mpiRank = extractHeaderValue(header, "MPI-Rank");
+                groupID = extractHeaderValue(header, "Group-ID");
 
-                size_t mpiRankPos = header.find("MPI-Rank: ");
-                if (mpiRankPos != string::npos) {
-                    size_t endPos = header.find("\r\n", mpiRankPos);
-                    mpiRank = header.substr(mpiRankPos + 10, endPos - mpiRankPos - 10);
-                    cout << "MPI-Rank: " << mpiRank << endl;
-                }
-
-                size_t groupIDPos = header.find("Group-ID: ");
-                if (groupIDPos != string::npos) {
-                    size_t endPos = header.find("\r\n", groupIDPos);
-                    groupID = header.substr(groupIDPos + 10, endPos - groupIDPos - 10);
-                    cout << "Group-ID: " << groupID << endl;
-                }
+                cout << "Group-ID: " << groupID << endl;
+                cout << "MPI-Rank: " << mpiRank << endl;
 
                 headerEnded = true;
                 response = response.substr(pos + 4);
@@ -198,4 +192,13 @@ int main(int argc, char** argv) {
     close(sock_);
 
     return 0;
+}
+
+string extractHeaderValue(const string &header, const string &key) {
+    size_t keyPos = header.find(key + ": ");
+    if (keyPos != string::npos) {
+        size_t endPos = header.find("\r\n", keyPos);
+        return header.substr(keyPos + key.length() + 2, endPos - keyPos - key.length() - 2);
+    }
+    return "";
 }
