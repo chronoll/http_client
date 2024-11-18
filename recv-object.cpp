@@ -25,6 +25,7 @@ int main(int argc, char** argv) {
     bool headerEnded = false;
     string response;
     string mpiRank;
+    string groupID;
     string matrixID;
 
     int id = stoi(argv[1]);  // コマンドライン引数からidを設定
@@ -83,8 +84,10 @@ int main(int argc, char** argv) {
                 }
                 
                 mpiRank = extractHeaderValue(header, "MPI-Rank");
+                groupID = extractHeaderValue(header, "Group-ID");
                 matrixID = extractHeaderValue(header, "Matrix-ID");
 
+                cout << "Group-ID: " << groupID << endl;
                 cout << "MPI-Rank: " << mpiRank << endl;
 
                 headerEnded = true;
@@ -162,7 +165,7 @@ int main(int argc, char** argv) {
 
     string filename = "result_" + to_string(id);
 
-    string request_ = "POST /http_server/receive-result.php?ID=" + to_string(id) + "&RANK=" + mpiRank + "&MATRIX_ID=" + matrixID + " HTTP/1.1\r\n"
+    string request_ = "POST /http_server/receive-result.php?ID=" + to_string(id) + "&RANK=" + mpiRank + "&GROUP=" + groupID + "&MATRIX_ID=" + matrixID + " HTTP/1.1\r\n"
                  "Host: " + host + "\r\n"
                  "Content-Type: application/octet-stream\r\n"
                  "X-Filename: " + filename + "\r\n"
