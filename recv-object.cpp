@@ -26,7 +26,8 @@ int main(int argc, char** argv) {
     string response;
     string mpiRank;
     string groupID;
-    string matrixID;
+    string jobID;
+    string subJobID;
 
     int id = stoi(argv[1]);  // コマンドライン引数からidを設定
     string object_path = "objects/temp_" + to_string(id);
@@ -82,13 +83,11 @@ int main(int argc, char** argv) {
                         return 1;
                     }
                 }
-                
+
                 mpiRank = extractHeaderValue(header, "MPI-Rank");
                 groupID = extractHeaderValue(header, "Group-ID");
-                matrixID = extractHeaderValue(header, "Matrix-ID");
-
-                cout << "Group-ID: " << groupID << endl;
-                cout << "MPI-Rank: " << mpiRank << endl;
+                jobID = extractHeaderValue(header, "Job-ID");
+                subJobID = extractHeaderValue(header, "Sub-Job-ID");
 
                 headerEnded = true;
                 response = response.substr(pos + 4);
@@ -165,7 +164,7 @@ int main(int argc, char** argv) {
 
     string filename = "result_" + to_string(id);
 
-    string request_ = "POST /http_server/receive-result.php?ID=" + to_string(id) + "&RANK=" + mpiRank + "&GROUP=" + groupID + "&MATRIX_ID=" + matrixID + " HTTP/1.1\r\n"
+    string request_ = "POST /http_server/receive-result.php?ID=" + to_string(id) + "&RANK=" + mpiRank + "&GROUP=" + groupID + "&JOB_ID=" + jobID + "&SUB_JOB_ID=" + subJobID + " HTTP/1.1\r\n"
                  "Host: " + host + "\r\n"
                  "Content-Type: application/octet-stream\r\n"
                  "X-Filename: " + filename + "\r\n"
