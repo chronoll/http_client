@@ -96,6 +96,11 @@ int main(int argc, char** argv) {
     }
     close(sock);
 
+    // // 送信失敗時のシミュレーション用
+    // if (stoi(mpiRank) % 3 == 0) {
+    //     return 0;
+    // }
+
     /* バイナリをローカルに保存 */
     ofstream outputFile(object_path, ios::binary);
     if (!outputFile.is_open()) {
