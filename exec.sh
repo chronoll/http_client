@@ -1,4 +1,8 @@
 #!/bin/bash
+
+echo a | sudo -S rm objects/*
+echo a | sudo -S rm results/*
+
 export LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:/lib64:/opt/lampp/lib
 # コマンドライン引数からプロセス数を取得
 if [ -z "$1" ]; then
