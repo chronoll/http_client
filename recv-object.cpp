@@ -8,8 +8,11 @@
 #include <vector>
 #include <ctime>
 #include <sstream>
+#include <chrono>
+#include <iomanip> 
 
 using namespace std;
+using namespace chrono;
 
 unsigned short port = 80;
 string host = "127.0.0.1";
@@ -17,8 +20,10 @@ string host = "127.0.0.1";
 string extractHeaderValue(const string &header, const string &key);
 void writeLog(const string &message, const string &logPath, bool isError = false);
 string getCurrentTimestamp();
+string formatDuration(const duration<double>& duration);
 
 int main(int argc, char** argv) {
+    auto startTime = high_resolution_clock::now();
     if (argc < 2) {
         cerr << "Usage: " << argv[0] << " <id>" << endl;
         return 1;
@@ -216,7 +221,12 @@ int main(int argc, char** argv) {
     resultFileStream.close();
     close(sock_);
     
-    writeLog("Process completed successfully", log_file_path);
+    auto endTime = high_resolution_clock::now();
+    chrono::duration<double> duration = endTime - startTime;
+    
+    // 実行時間をログに出力
+    writeLog("Process completed successfully. Total execution time: " + formatDuration(duration), log_file_path);
+    
     return 0;
 }
 
@@ -254,4 +264,18 @@ void writeLog(const string &message, const string &logPath, bool isError) {
     } else {
         cout << message << endl;
     }
+}
+
+/* 実行時間を見やすい形式にフォーマット */
+string formatDuration(const duration<double>& duration) {
+    auto seconds = duration.count();
+    auto minutes = static_cast<int>(seconds) / 60;
+    auto remainingSeconds = seconds - minutes * 60;
+    
+    stringstream ss;
+    if (minutes > 0) {
+        ss << minutes << "m ";
+    }
+    ss << fixed << setprecision(3) << remainingSeconds << "s";
+    return ss.str();
 }
