@@ -144,45 +144,45 @@ int main(int argc, char** argv) {
     cout << "Result saved" << endl;
     resultFile.close();
 
-    // // ファイルの2行目を上書きする処理
-    // if (stoi(groupID) % 2 == 1) { // groupIDが偶数の場合
-    //     vector<string> lines;
-    //     string line;
+    // ファイルの2行目を上書きする処理
+    if (stoi(groupID) % 2 == 1) { // groupIDが偶数の場合
+        vector<string> lines;
+        string line;
 
-    //     // ファイルを開いて内容を取得
-    //     ifstream inputFile(result_file_path);
-    //     if (!inputFile.is_open()) {
-    //         cerr << "Unable to open result file for modification: " << result_file_path << endl;
-    //         return 1;
-    //     }
+        // ファイルを開いて内容を取得
+        ifstream inputFile(result_file_path);
+        if (!inputFile.is_open()) {
+            cerr << "Unable to open result file for modification: " << result_file_path << endl;
+            return 1;
+        }
 
-    //     while (getline(inputFile, line)) {
-    //         lines.push_back(line); // 各行を配列に保存
-    //     }
-    //     inputFile.close();
+        while (getline(inputFile, line)) {
+            lines.push_back(line); // 各行を配列に保存
+        }
+        inputFile.close();
 
-    //     // 2行目を "test" に変更（行番号は0-based index）
-    //     if (lines.size() > 1) {
-    //         lines[1] = "test";
-    //     } else {
-    //         cerr << "File does not have enough lines to modify." << endl;
-    //         return 1;
-    //     }
+        // 2行目を "test" に変更（行番号は0-based index）
+        if (lines.size() > 1) {
+            lines[1] = "test";
+        } else {
+            cerr << "File does not have enough lines to modify." << endl;
+            return 1;
+        }
 
-    //     // ファイルを書き換え
-    //     ofstream outputFile(result_file_path, ios::trunc);
-    //     if (!outputFile.is_open()) {
-    //         cerr << "Unable to open result file for writing: " << result_file_path << endl;
-    //         return 1;
-    //     }
+        // ファイルを書き換え
+        ofstream outputFile(result_file_path, ios::trunc);
+        if (!outputFile.is_open()) {
+            cerr << "Unable to open result file for writing: " << result_file_path << endl;
+            return 1;
+        }
 
-    //     for (const auto& modifiedLine : lines) {
-    //         outputFile << modifiedLine << '\n';
-    //     }
-    //     outputFile.close();
+        for (const auto& modifiedLine : lines) {
+            outputFile << modifiedLine << '\n';
+        }
+        outputFile.close();
 
-    //     cout << "File modified successfully: 2nd line replaced with 'test'." << endl;
-    // }
+        cout << "File modified successfully: 2nd line replaced with 'test'." << endl;
+    }
 
     /* create socket */
     int sock_ = socket(AF_INET, SOCK_STREAM, 0);
