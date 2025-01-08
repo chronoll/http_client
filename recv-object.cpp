@@ -64,11 +64,17 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    auto firstConnectStartTime = high_resolution_clock::now();
+
     /* connect to server */
     if (connect(sock, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
         writeLog("Connection error", log_file_path, true);
         return 1;
     }
+
+    auto firstConnectEndTime = high_resolution_clock::now();
+    chrono::duration<double> firstConnectDuration = firstConnectEndTime - firstConnectStartTime;
+    writeLog("First connection established in " + formatDuration(firstConnectDuration), log_file_path);
 
     string request = "GET /http_server/send-object.php?ID=" + to_string(id) + " HTTP/1.1\r\n"
                      "Host: " + host + "\r\n"
@@ -76,11 +82,19 @@ int main(int argc, char** argv) {
 
     writeLog("Sending request: " + request, log_file_path);
 
+    auto firstRequestStartTime = high_resolution_clock::now();
+
     /* send request */
     if (send(sock, request.c_str(), request.size(), 0) < 0) {
         writeLog("Send error", log_file_path, true);
         return 1;
     }
+
+    auto firstRequestEndTime = high_resolution_clock::now();
+    chrono::duration<double> firstRequestDuration = firstRequestEndTime - firstRequestStartTime;
+    writeLog("First request sent in " + formatDuration(firstRequestDuration), log_file_path);
+
+    auto receiveStartTime = high_resolution_clock::now();
 
     while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
         response.append(buffer, len);
@@ -116,7 +130,14 @@ int main(int argc, char** argv) {
             }
         }
     }
+
+    auto receiveEndTime = high_resolution_clock::now();
+    chrono::duration<double> receiveDuration = receiveEndTime - receiveStartTime;
+    writeLog("Response received in " + formatDuration(receiveDuration), log_file_path);
+
     close(sock);
+
+    auto saveStartTime = high_resolution_clock::now();
 
     /* バイナリをローカルに保存 */
     ofstream outputFile(object_path, ios::binary);
@@ -126,7 +147,12 @@ int main(int argc, char** argv) {
     }
     outputFile.write(response.c_str(), response.size());
     outputFile.close();
-    writeLog("File saved: " + object_path, log_file_path);
+
+    auto saveEndTime = high_resolution_clock::now();
+    chrono::duration<double> saveDuration = saveEndTime - saveStartTime;
+    writeLog("File saved in " + formatDuration(saveDuration), log_file_path);
+
+    writeLog("File saved to: " + object_path, log_file_path);
 
     /* バイナリに実行権限を付与 */
     string chmodCommand = "chmod +x " + object_path;
@@ -137,6 +163,8 @@ int main(int argc, char** argv) {
     string execCommand = "./" + object_path + " " + mpiRank + " " + "4";
     writeLog("Executing command: " + execCommand, log_file_path);
     
+    auto execStartTime = high_resolution_clock::now();
+
     FILE *pipe = popen(execCommand.c_str(), "r");
     if (pipe == NULL) {
         writeLog("popen failed", log_file_path, true);
@@ -160,7 +188,11 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    auto execEndTime = high_resolution_clock::now();
+    chrono::duration<double> execDuration = execEndTime - execStartTime;
+    writeLog("Command executed in " + formatDuration(execDuration), log_file_path);
     writeLog("Result saved to: " + result_file_path, log_file_path);
+
     resultFile.close();
 
     /* create socket */
@@ -170,11 +202,17 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    auto secondConnectStartTime = high_resolution_clock::now();
+
     /* connect to server */
     if (connect(sock_, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
         writeLog("Connection error for result upload", log_file_path, true);
         return 1;
     }
+
+    auto secondConnectEndTime = high_resolution_clock::now();
+    chrono::duration<double> secondConnectDuration = secondConnectEndTime - secondConnectStartTime;
+    writeLog("Second connection established in " + formatDuration(secondConnectDuration), log_file_path);
 
     ifstream resultFileStream(result_file_path, ios::in | ios::binary);
     if (!resultFileStream.is_open()) {
@@ -200,6 +238,8 @@ int main(int argc, char** argv) {
 
     writeLog("Sending result upload request", log_file_path);
 
+    auto secondRequestStartTime = high_resolution_clock::now();
+
     /* HTTPリクエストヘッダを送信 */
     if (send(sock_, request_.c_str(), request_.size(), 0) < 0) {
         writeLog("Send error (header) for result upload", log_file_path, true);
@@ -207,6 +247,12 @@ int main(int argc, char** argv) {
         close(sock_);
         return 1;
     }
+
+    auto secondRequestEndTime = high_resolution_clock::now();
+    chrono::duration<double> secondRequestDuration = secondRequestEndTime - secondRequestStartTime;
+    writeLog("Second request sent in " + formatDuration(secondRequestDuration), log_file_path);
+
+    auto sendResultStartTime = high_resolution_clock::now();
 
     /* ファイルデータを送信 */
     char sendBuf[1024];
@@ -219,6 +265,10 @@ int main(int argc, char** argv) {
             return 1;
         }
     }
+
+    auto sendResultEndTime = high_resolution_clock::now();
+    chrono::duration<double> sendResultDuration = sendResultEndTime - sendResultStartTime;
+    writeLog("Result uploaded in " + formatDuration(sendResultDuration), log_file_path);
 
     resultFileStream.close();
     close(sock_);
