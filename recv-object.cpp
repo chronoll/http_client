@@ -19,15 +19,16 @@ string host = "127.0.0.1";
 
 string extractHeaderValue(const string &header, const string &key);
 void writeLog(const string &message, const string &logPath, bool isError = false);
+void writeSeparator(const string &logPath);
 string getCurrentTimestamp();
 string formatDuration(const duration<double>& duration);
 
 int main(int argc, char** argv) {
-    auto startTime = high_resolution_clock::now();
     if (argc < 2) {
         cerr << "Usage: " << argv[0] << " <id>" << endl;
         return 1;
     }
+    auto allStartTime = high_resolution_clock::now();
 
     int id = stoi(argv[1]);
     string object_path = "objects/temp_" + to_string(id);
@@ -37,6 +38,7 @@ int main(int argc, char** argv) {
     // ログディレクトリが存在しない場合は作成
     system("mkdir -p logs");
 
+    writeSeparator(log_file_path);
     writeLog("Process started with ID: " + to_string(id), log_file_path);
 
     char buffer[1024];
@@ -221,12 +223,13 @@ int main(int argc, char** argv) {
     resultFileStream.close();
     close(sock_);
     
-    auto endTime = high_resolution_clock::now();
-    chrono::duration<double> duration = endTime - startTime;
+    auto allEndTime = high_resolution_clock::now();
+    chrono::duration<double> allDuration = allEndTime - allStartTime;
     
     // 実行時間をログに出力
-    writeLog("Process completed successfully. Total execution time: " + formatDuration(duration), log_file_path);
-    
+    writeLog("Process completed successfully. Total execution time: " + formatDuration(allDuration), log_file_path);
+    writeSeparator(log_file_path);
+
     return 0;
 }
 
@@ -278,4 +281,15 @@ string formatDuration(const duration<double>& duration) {
     }
     ss << fixed << setprecision(3) << remainingSeconds << "s";
     return ss.str();
+}
+
+/* 区切り線を書き込む */
+void writeSeparator(const string &logPath) {
+    ofstream logFile(logPath, ios::app);
+    if (logFile.is_open()) {
+        logFile << "\n" 
+                << "===========================================================" << endl
+                << endl;
+        logFile.close();
+    }
 }
