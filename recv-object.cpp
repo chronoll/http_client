@@ -95,8 +95,15 @@ int main(int argc, char** argv) {
     writeLog("First request sent in " + formatDuration(firstRequestDuration), log_file_path);
 
     auto receiveStartTime = high_resolution_clock::now();
+    bool firstResponseReceived = false;
 
     while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
+        if (!firstResponseReceived) {
+            auto firstResponseReceivedTime = high_resolution_clock::now();
+            chrono::duration<double> firstResponseDuration = firstResponseReceivedTime - receiveStartTime; // レスポンス受信までの時間
+            writeLog("Time from request to first response:" + formatDuration(firstResponseDuration), log_file_path);
+            firstResponseReceived = true;
+        }
         response.append(buffer, len);
 
         if (!headerEnded) {
