@@ -328,15 +328,15 @@ void writeLog(const string &message, const string &logPath, bool isError) {
 
 /* 実行時間を見やすい形式にフォーマット */
 string formatDuration(const duration<double>& duration) {
-    auto seconds = duration.count();
-    auto minutes = static_cast<int>(seconds) / 60;
-    auto remainingSeconds = seconds - minutes * 60;
+    auto milliseconds = chrono::duration_cast<chrono::microseconds>(duration).count() / 1000.0;
+    auto minutes = static_cast<int>(milliseconds) / (1000 * 60);
+    auto remainingMilliseconds = milliseconds - minutes * (1000 * 60);
     
     stringstream ss;
     if (minutes > 0) {
         ss << minutes << "m ";
     }
-    ss << fixed << setprecision(3) << remainingSeconds << "s";
+    ss << fixed << setprecision(6) << remainingMilliseconds << "ms";
     return ss.str();
 }
 

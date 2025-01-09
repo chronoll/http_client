@@ -541,3 +541,31 @@ Connection: close
 
 ===========================================================
 
+
+===========================================================
+
+[2025-01-09 17:51:00] INFO: Process started with ID: 0
+[2025-01-09 17:51:00] INFO: First connection established in 0.084000ms
+[2025-01-09 17:51:00] INFO: Sending request: GET /http_server/send-object.php?ID=0 HTTP/1.1
+Host: 127.0.0.1
+Connection: close
+
+
+[2025-01-09 17:51:00] INFO: First request sent in 0.057000ms
+[2025-01-09 17:51:00] INFO: Time from request to first response:11.132000ms
+[2025-01-09 17:51:00] INFO: Received headers - MPI-Rank: 1, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 2
+[2025-01-09 17:51:00] INFO: Response received in 11.753000ms
+[2025-01-09 17:51:00] INFO: File saved in 0.235000ms
+[2025-01-09 17:51:00] INFO: File saved to: objects/temp_0
+[2025-01-09 17:51:00] INFO: Execution permission granted to: objects/temp_0
+[2025-01-09 17:51:00] INFO: Executing command: ./objects/temp_0 1 4
+[2025-01-09 17:51:00] INFO: Command executed in 654.203000ms
+[2025-01-09 17:51:00] INFO: Result saved to: results/result_0
+[2025-01-09 17:51:00] INFO: Second connection established in 0.078000ms
+[2025-01-09 17:51:00] INFO: Sending result upload request
+[2025-01-09 17:51:00] INFO: Second request sent in 0.045000ms
+[2025-01-09 17:51:00] INFO: Result uploaded in 0.033000ms
+[2025-01-09 17:51:00] INFO: Process completed successfully. Total execution time: 675.066000ms
+
+===========================================================
+
