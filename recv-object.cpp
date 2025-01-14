@@ -16,6 +16,7 @@ using namespace chrono;
 
 unsigned short port = 80;
 string host = "127.0.0.1";
+// string host = "192.168.100.3";
 
 string extractHeaderValue(const string &header, const string &key);
 void writeLog(const string &message, const string &logPath, bool isError = false);
@@ -41,7 +42,7 @@ int main(int argc, char** argv) {
     writeSeparator(log_file_path);
     writeLog("Process started with ID: " + to_string(id), log_file_path);
 
-    char buffer[1024];
+    char buffer[16384];
     int len;
     bool headerEnded = false;
     string response;
@@ -96,8 +97,12 @@ int main(int argc, char** argv) {
 
     auto receiveStartTime = high_resolution_clock::now();
     bool firstResponseReceived = false;
+    int loopCount = 0;
 
     while ((len = recv(sock, buffer, sizeof(buffer), 0)) > 0) {
+        auto loopStartTime = high_resolution_clock::now();
+        loopCount++;
+
         if (!firstResponseReceived) {
             auto firstResponseReceivedTime = high_resolution_clock::now();
             chrono::duration<double> firstResponseDuration = firstResponseReceivedTime - receiveStartTime; // レスポンス受信までの時間
@@ -136,6 +141,10 @@ int main(int argc, char** argv) {
                 response = response.substr(pos + 4);
             }
         }
+
+        auto loopEndTime = high_resolution_clock::now();
+        chrono::duration<double> loopDuration = loopEndTime - loopStartTime;
+        writeLog("Receive loop #" + to_string(loopCount) + " received " + to_string(len) + " bytes in " + formatDuration(loopDuration), log_file_path);
     }
 
     auto receiveEndTime = high_resolution_clock::now();
