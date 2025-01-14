@@ -311,17 +311,17 @@ string extractHeaderValue(const string &header, const string &key) {
 
 /* タイムスタンプを取得 */
 string getCurrentTimestamp() {
-    // 現在時刻をミリ秒単位で取得
+    // 現在時刻をマイクロ秒単位で取得
     auto now = system_clock::now();
     auto now_c = system_clock::to_time_t(now);
-    auto now_ms = duration_cast<milliseconds>(now.time_since_epoch()) % 1000;
+    auto now_us = duration_cast<microseconds>(now.time_since_epoch()) % 1000000;
 
     char timestamp[64];
     strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", localtime(&now_c));
     
-    // ミリ秒を追加
+    // マイクロ秒を追加
     stringstream ss;
-    ss << timestamp << "." << setfill('0') << setw(3) << now_ms.count();
+    ss << timestamp << "." << setfill('0') << setw(6) << now_us.count();
     
     return ss.str();
 }
