@@ -8,6 +8,9 @@ if [ -z "$1" ]; then
 fi
 
 NUM_PROCESSES=$1
+GROUP=1
+
+sh sql.sh $GROUP $NUM_PROCESSES
 
 # mpirun コマンドを実行
 mpirun -np "$NUM_PROCESSES" ./mpi-launcher

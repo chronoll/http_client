@@ -1552,3 +1552,113 @@ Connection: close
 
 ===========================================================
 
+
+===========================================================
+
+[2025-01-16 14:57:35.663072] INFO: Process started with ID: 2
+[2025-01-16 14:57:35.663350] INFO: First connection established in 0.091000ms
+[2025-01-16 14:57:35.663401] INFO: Sending request: GET /http_server/send-object.php?ID=2 HTTP/1.1
+Host: 127.0.0.1
+Connection: close
+
+
+[2025-01-16 14:57:35.663520] INFO: First request sent in 0.068000ms
+[2025-01-16 14:57:35.671700] INFO: Time from request to first response:8.072000ms
+[2025-01-16 14:57:35.671880] INFO: Received headers - MPI-Rank: 2, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 3
+[2025-01-16 14:57:35.672023] INFO: Receive loop #1 received 16384 bytes in 0.362000ms
+[2025-01-16 14:57:35.672231] INFO: Receive loop #2 received 16384 bytes in 0.071000ms
+[2025-01-16 14:57:35.672437] INFO: Receive loop #3 received 16384 bytes in 0.099000ms
+[2025-01-16 14:57:35.672653] INFO: Receive loop #4 received 16384 bytes in 0.121000ms
+[2025-01-16 14:57:35.672771] INFO: Receive loop #5 received 16384 bytes in 0.030000ms
+[2025-01-16 14:57:35.672915] INFO: Receive loop #6 received 16384 bytes in 0.034000ms
+[2025-01-16 14:57:35.673033] INFO: Receive loop #7 received 1565 bytes in 0.010000ms
+[2025-01-16 14:57:35.673130] INFO: Response received in 9.547000ms
+[2025-01-16 14:57:35.673720] INFO: File saved in 0.372000ms
+[2025-01-16 14:57:35.673832] INFO: File saved to: objects/temp_2
+[2025-01-16 14:57:35.678148] INFO: Execution permission granted to: objects/temp_2
+[2025-01-16 14:57:35.678296] INFO: Executing command: ./objects/temp_2 2 4
+
+===========================================================
+
+[2025-01-16 15:00:23.488854] INFO: Process started with ID: 2
+[2025-01-16 15:00:23.489338] INFO: First connection established in 0.110000ms
+[2025-01-16 15:00:23.489456] INFO: Sending request: GET /http_server/send-object.php?ID=2 HTTP/1.1
+Host: 127.0.0.1
+Connection: close
+
+
+[2025-01-16 15:00:23.489667] INFO: First request sent in 0.105000ms
+[2025-01-16 15:00:23.501161] INFO: Time from request to first response:11.312000ms
+[2025-01-16 15:00:23.501412] INFO: Received headers - MPI-Rank: 1, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 2
+[2025-01-16 15:00:23.501604] INFO: Receive loop #1 received 16384 bytes in 0.478000ms
+[2025-01-16 15:00:23.502030] INFO: Receive loop #2 received 16384 bytes in 0.122000ms
+[2025-01-16 15:00:23.502201] INFO: Receive loop #3 received 16384 bytes in 0.071000ms
+[2025-01-16 15:00:23.502343] INFO: Receive loop #4 received 16384 bytes in 0.095000ms
+[2025-01-16 15:00:23.502406] INFO: Receive loop #5 received 16384 bytes in 0.024000ms
+[2025-01-16 15:00:23.502461] INFO: Receive loop #6 received 16384 bytes in 0.019000ms
+[2025-01-16 15:00:23.502517] INFO: Receive loop #7 received 1565 bytes in 0.004000ms
+[2025-01-16 15:00:23.502554] INFO: Response received in 12.781000ms
+[2025-01-16 15:00:23.502919] INFO: File saved in 0.234000ms
+[2025-01-16 15:00:23.502955] INFO: File saved to: objects/temp_2
+[2025-01-16 15:00:23.507323] INFO: Execution permission granted to: objects/temp_2
+[2025-01-16 15:00:23.507418] INFO: Executing command: ./objects/temp_2 1 4
+[2025-01-16 15:00:24.146990] INFO: Command executed in 639.506000ms
+[2025-01-16 15:00:24.147063] INFO: Result saved to: results/result_2
+[2025-01-16 15:00:24.147202] INFO: Second connection established in 0.049000ms
+[2025-01-16 15:00:24.147271] INFO: Sending result upload request
+[2025-01-16 15:00:24.147350] INFO: Second request sent in 0.037000ms
+[2025-01-16 15:00:24.147433] INFO: Result uploaded in 0.037000ms
+[2025-01-16 15:00:24.147496] INFO: Process completed successfully. Total execution time: 663.343000ms
+
+===========================================================
+
+
+===========================================================
+
+[2025-01-16 15:03:06.980891] INFO: Process started with ID: 2
+[2025-01-16 15:03:06.980947] INFO: First connection established in 0.015000ms
+[2025-01-16 15:03:06.980956] INFO: Sending request: GET /http_server/send-object.php?ID=2 HTTP/1.1
+Host: 127.0.0.1
+Connection: close
+
+
+[2025-01-16 15:03:06.980976] INFO: First request sent in 0.012000ms
+[2025-01-16 15:03:06.987354] INFO: Time from request to first response:6.342000ms
+[2025-01-16 15:03:06.987500] INFO: Received headers - MPI-Rank: 4, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 5
+[2025-01-16 15:03:06.987588] INFO: Receive loop #1 received 16384 bytes in 0.245000ms
+[2025-01-16 15:03:06.987721] INFO: Receive loop #2 received 16384 bytes in 0.051000ms
+[2025-01-16 15:03:06.987822] INFO: Receive loop #3 received 16384 bytes in 0.058000ms
+[2025-01-16 15:03:06.987967] INFO: Receive loop #4 received 16384 bytes in 0.105000ms
+[2025-01-16 15:03:06.988047] INFO: Receive loop #5 received 16384 bytes in 0.025000ms
+[2025-01-16 15:03:06.988115] INFO: Receive loop #6 received 16384 bytes in 0.021000ms
+[2025-01-16 15:03:06.988157] INFO: Receive loop #7 received 1565 bytes in 0.004000ms
+[2025-01-16 15:03:06.988359] INFO: Response received in 7.362000ms
+[2025-01-16 15:03:06.989124] INFO: File saved in 0.578000ms
+[2025-01-16 15:03:06.989194] INFO: File saved to: objects/temp_2
+[2025-01-16 15:03:06.993550] INFO: Execution permission granted to: objects/temp_2
+[2025-01-16 15:03:06.993676] INFO: Executing command: ./objects/temp_2 4 4
+
+===========================================================
+
+[2025-01-16 15:13:30.110037] INFO: Process started with ID: 2
+[2025-01-16 15:13:30.110309] INFO: First connection established in 0.060000ms
+[2025-01-16 15:13:30.110354] INFO: Sending request: GET /http_server/send-object.php?ID=2 HTTP/1.1
+Host: 127.0.0.1
+Connection: close
+
+
+[2025-01-16 15:13:30.110456] INFO: First request sent in 0.050000ms
+[2025-01-16 15:13:30.133808] INFO: Time from request to first response:23.264000ms
+[2025-01-16 15:13:30.134001] INFO: Received headers - MPI-Rank: 7, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 8
+[2025-01-16 15:13:30.134104] INFO: Receive loop #1 received 16384 bytes in 0.332000ms
+[2025-01-16 15:13:30.134280] INFO: Receive loop #2 received 16384 bytes in 0.072000ms
+[2025-01-16 15:13:30.134425] INFO: Receive loop #3 received 16384 bytes in 0.082000ms
+[2025-01-16 15:13:30.134608] INFO: Receive loop #4 received 16384 bytes in 0.127000ms
+[2025-01-16 15:13:30.134689] INFO: Receive loop #5 received 16384 bytes in 0.028000ms
+[2025-01-16 15:13:30.134769] INFO: Receive loop #6 received 16384 bytes in 0.025000ms
+[2025-01-16 15:13:30.134823] INFO: Receive loop #7 received 1565 bytes in 0.005000ms
+[2025-01-16 15:13:30.139732] INFO: Response received in 29.167000ms
+[2025-01-16 15:13:30.140560] INFO: File saved in 0.441000ms
+[2025-01-16 15:13:30.140652] INFO: File saved to: objects/temp_2
+[2025-01-16 15:13:30.145395] INFO: Execution permission granted to: objects/temp_2
+[2025-01-16 15:13:30.145506] INFO: Executing command: ./objects/temp_2 7 4
