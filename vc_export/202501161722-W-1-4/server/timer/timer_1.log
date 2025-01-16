@@ -1,0 +1,9 @@
+
+[2025-01-16 07:34:15] Program started: Sleep 3s...
+[2025-01-16 07:34:18] Sleep completed
+[2025-01-16 07:34:18] [getGroupStatus] MySQL connection established. Execution time: 0.821 ms
+[2025-01-16 07:34:18] [getGroupStatus] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.735 ms
+[2025-01-16 07:34:18] [getGroupStatus] SELECT status FROM `matrix` WHERE group_id = :group_id / Execution time: 0.692 ms
+[2025-01-16 07:34:18] getGroupStatus completed. Execution time: 2.716 ms
+[2025-01-16 07:34:18] Program completed. Total execution time: 3,005.660 ms
+
