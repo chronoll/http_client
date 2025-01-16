@@ -50,6 +50,7 @@ int main(int argc, char** argv) {
     string groupID;
     string jobID;
     string subJobID;
+    string RankCount;
 
     /* create address */
     struct sockaddr_in addr;
@@ -133,9 +134,10 @@ int main(int argc, char** argv) {
                 groupID = extractHeaderValue(header, "Group-ID");
                 jobID = extractHeaderValue(header, "Job-ID");
                 subJobID = extractHeaderValue(header, "Sub-Job-ID");
+                RankCount = extractHeaderValue(header, "Rank-Count");
 
                 writeLog("Received headers - MPI-Rank: " + mpiRank + ", Group-ID: " + groupID + 
-                        ", Job-ID: " + jobID + ", Sub-Job-ID: " + subJobID, log_file_path);
+                        ", Job-ID: " + jobID + ", Sub-Job-ID: " + subJobID + ", Rank-Count: " + RankCount, log_file_path);
 
                 headerEnded = true;
                 response = response.substr(pos + 4);
@@ -176,7 +178,7 @@ int main(int argc, char** argv) {
     writeLog("Execution permission granted to: " + object_path, log_file_path);
 
     /* バイナリを実行して標準出力の内容を別ファイルに書き込む */
-    string execCommand = "./" + object_path + " " + mpiRank + " " + "4";
+    string execCommand = "./" + object_path + " " + mpiRank + " " + RankCount;
     writeLog("Executing command: " + execCommand, log_file_path);
     
     auto execStartTime = high_resolution_clock::now();
@@ -245,7 +247,7 @@ int main(int argc, char** argv) {
 
     string request_ = "POST /http_server/receive-result.php?ID=" + to_string(id) + 
                      "&RANK=" + mpiRank + "&GROUP=" + groupID + 
-                     "&JOB_ID=" + jobID + "&SUB_JOB_ID=" + subJobID + " HTTP/1.1\r\n"
+                     "&JOB_ID=" + jobID + "&SUB_JOB_ID=" + subJobID + "&RANK_COUNT=" + RankCount + " HTTP/1.1\r\n"
                      "Host: " + host + "\r\n"
                      "Content-Type: application/octet-stream\r\n"
                      "X-Filename: " + filename + "\r\n"

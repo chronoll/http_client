@@ -10,6 +10,9 @@ fi
 NUM_PROCESSES=$1
 GROUP=1
 
+rm objects/*
+rm results/*
+
 sh sql.sh $GROUP $NUM_PROCESSES
 
 # mpirun コマンドを実行
