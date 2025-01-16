@@ -1,14 +1,16 @@
 #!/bin/bash
 
 export LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:/lib64:/opt/lampp/lib
-# コマンドライン引数からプロセス数を取得
-if [ -z "$1" ]; then
-    echo "Usage: $0 <number_of_processes>"
+
+# コマンドライン引数の確認
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <group_count> <number_of_processes>"
+    echo "Example: $0 1 4"
     exit 1
 fi
 
-NUM_PROCESSES=$1
-GROUP=1
+GROUP=$1
+NUM_PROCESSES=$2
 
 rm objects/*
 rm results/*
