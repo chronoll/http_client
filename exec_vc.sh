@@ -13,6 +13,9 @@ GROUP=1
 rm objects/*
 rm results/*
 
+rm /opt/lampp/htdocs/files/*
+sudo rm /opt/lampp/logs/access_log
+
 sudo lampp restart
 sleep 1
 
