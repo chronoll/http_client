@@ -25,10 +25,24 @@ string getCurrentTimestamp();
 string formatDuration(const duration<double>& duration);
 
 int main(int argc, char** argv) {
+    bool exitFlag = false;
+
+    // コマンドライン引数の解析
     if (argc < 2) {
-        cerr << "Usage: " << argv[0] << " <id>" << endl;
+        cerr << "Usage: " << argv[0] << " <id> [-e]" << endl;
+        cerr << "Options:" << endl;
+        cerr << "  -e    Exit if MPI rank is 0" << endl;
         return 1;
     }
+
+    // オプションの確認
+    for (int i = 1; i < argc; i++) {
+        string arg = argv[i];
+        if (arg == "-e") {
+            exitFlag = true;
+        }
+    }
+    
     auto allStartTime = high_resolution_clock::now();
 
     int id = stoi(argv[1]);
@@ -172,6 +186,13 @@ int main(int argc, char** argv) {
 
     writeLog("File saved to: " + object_path, log_file_path);
 
+    // デバッグ用オプションが有効なら、MPIランクが0の場合にプロセスを終了
+    if (exitFlag && stoi(mpiRank) == 0) {
+        writeLog("This process is exited. mpiRank: " + mpiRank, log_file_path);
+        writeSeparator(log_file_path);
+        return 0;
+    }
+
     /* バイナリに実行権限を付与 */
     string chmodCommand = "chmod +x " + object_path;
     system(chmodCommand.c_str());
@@ -252,7 +273,7 @@ int main(int argc, char** argv) {
                      "Content-Type: application/octet-stream\r\n"
                      "X-Filename: " + filename + "\r\n"
                      "Content-Length: " + to_string(fileSize) + "\r\n"
-                     "Connection: close\r\n\r\n";
+                     "Connection: close\r \n\r\n";
 
     writeLog("Sending result upload request", log_file_path);
 
