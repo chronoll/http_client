@@ -1,0 +1,29 @@
+
+[2025-01-20 12:44:54.691049] INFO: Process started with ID: 93
+[2025-01-20 12:44:56.651539] INFO: First connection established in 0.194000ms
+[2025-01-20 12:44:59.390203] INFO: Sending request: GET /http_server/send-object.php?ID=93 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-20 12:45:02.981995] INFO: First request sent in 0.004000ms
+[2025-01-20 12:45:06.936734] INFO: Time from request to first response:0.023000ms
+[2025-01-20 12:45:11.519125] INFO: Received headers - MPI-Rank: 131, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 132, Rank-Count: 1024
+[2025-01-20 12:45:15.637909] INFO: Receive loop #1 received 16384 bytes in 8039.709000ms
+[2025-01-20 12:45:23.468329] INFO: Receive loop #2 received 16384 bytes in 0.071000ms
+[2025-01-20 12:45:33.919205] INFO: Receive loop #3 received 16384 bytes in 0.084000ms
+[2025-01-20 12:45:39.052829] INFO: Receive loop #4 received 16384 bytes in 0.113000ms
+[2025-01-20 12:45:47.498289] INFO: Receive loop #5 received 16384 bytes in 0.019000ms
+[2025-01-20 12:45:54.479230] INFO: Receive loop #6 received 16384 bytes in 0.005000ms
+[2025-01-20 12:46:06.102714] INFO: Receive loop #7 received 16384 bytes in 0.006000ms
+[2025-01-20 12:46:10.350045] INFO: Receive loop #8 received 16384 bytes in 0.124000ms
+[2025-01-20 12:46:17.044119] INFO: Receive loop #9 received 16384 bytes in 0.006000ms
+[2025-01-20 12:46:25.187594] INFO: Receive loop #10 received 16384 bytes in 0.007000ms
+[2025-01-20 12:46:31.864971] INFO: Receive loop #11 received 16384 bytes in 0.037000ms
+[2025-01-20 12:46:43.358794] INFO: Receive loop #12 received 7666 bytes in 0.020000ms
+[2025-01-20 12:46:47.458668] INFO: Response received in 1m 37252.008000ms
+[2025-01-20 12:48:23.409692] INFO: File saved in 1m 30966.389000ms
+[2025-01-20 12:48:23.739688] INFO: File saved to: objects/temp_93
+[2025-01-20 12:48:25.209068] INFO: Execution permission granted to: objects/temp_93
+[2025-01-20 12:48:25.608352] INFO: Executing command: ./objects/temp_93 131 1024
+
