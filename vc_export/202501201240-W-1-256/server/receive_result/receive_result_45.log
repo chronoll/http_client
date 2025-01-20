@@ -9,7 +9,7 @@
 [2025-01-20 12:40:30] [updateStatus] MySQL connection established. Execution time: 0.135 ms
 [2025-01-20 12:40:30] [updateStatus] SELECT table_name FROM table_registry WHERE id = :job_id FOR UPDATE / Execution time: 1.965 ms
 [2025-01-20 12:40:30] [updateStatus] UPDATE `matrix` SET status = :status WHERE id = :sub_job_id / Execution time: 0.310 ms
-[2025-01-20 12:40:30] [updateStatus] SELECT COUNT(*) AS total, SUM(...) FROM `matrix` / Execution time: 0.701 ms
+[2025-01-20 12:40:30] [updateStatus] SELECT COUNT_RECORDS FROM matrix / Execution time: 0.701 ms
 [2025-01-20 12:40:30] [updateStatus] UPDATE table_registry SET status = :status WHERE id = :job_id / Execution time: 0.199 ms
 [2025-01-20 12:40:30] updateStatus completed. Execution time: 50.969 ms
 [2025-01-20 12:40:30] Write file completed. Execution time: 51.367 ms

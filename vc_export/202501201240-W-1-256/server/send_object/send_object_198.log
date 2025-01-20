@@ -3,7 +3,7 @@
 [2025-01-20 12:39:31] [distributeJob] MySQL connection established. Execution time: 0.928 ms
 [2025-01-20 12:39:31] [distributeJob] SELECT * FROM table_registry WHERE status <= :status ORDER BY id ASC FOR UPDATE / Execution time: 0.427 ms
 [2025-01-20 12:39:31] [distributeJob] SELECT * FROM `matrix` WHERE status = :status ORDER BY id ASC LIMIT 1 FOR UPDATE / Execution time: 0.496 ms
-[2025-01-20 12:39:31] [distributeJob] UPDATE `matrix` SET status = :status, client = :client_id WHERE id = :sub_job_id / Execution time: 0.268 ms
+[2025-01-20 12:39:31] [distributeJob] UPDATE_MATRIX_STATUS / Execution time: 0.268 ms
 [2025-01-20 12:39:31] Distribute job completed. Execution time: 3.970 ms
 [2025-01-20 12:39:31] Clean buffer completed. Execution time: 0.001 ms
 [2025-01-20 12:39:31] Sending headers:

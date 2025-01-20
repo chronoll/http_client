@@ -9,7 +9,7 @@
 [2025-01-16 17:53:51] [resetGroupStatus] SELECT table_name FROM table_registry WHERE id = :job_id FOR UPDATE / Execution time: 0.211 ms
 [2025-01-16 17:53:51] [resetGroupStatus] UPDATE `matrix` SET status = :status WHERE group_id = :group_id / Execution time: 0.246 ms
 [2025-01-16 17:53:51] [resetGroupStatus] UPDATE `matrix` SET client = NULL WHERE group_id = :group_id / Execution time: 0.227 ms
-[2025-01-16 17:53:51] [resetGroupStatus] SELECT COUNT(*) AS total, SUM(...) FROM `matrix` / Execution time: 0.229 ms
+[2025-01-16 17:53:51] [resetGroupStatus] SELECT COUNT_RECORDS FROM matrix / Execution time: 0.229 ms
 [2025-01-16 17:53:51] [resetGroupStatus] UPDATE table_registry SET status = :status WHERE id = :job_id / Execution time: 0.193 ms
 [2025-01-16 17:53:51] resetGroupStatus completed. Execution time: 4.016 ms
 [2025-01-16 17:53:51] deleteGroupDirectory completed. Execution time: 0.016 ms
