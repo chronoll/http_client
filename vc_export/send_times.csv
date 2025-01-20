@@ -1,0 +1,12 @@
+Description,W-1-4,W-1-8,W-1-16,W-1-32,W-1-64,W-1-128,W-1-256,W-1-512
+"[distributeJob] MySQL connection established.",,,,,,,,
+"[distributeJob] SELECT * FROM table_registry WHERE status <= :status ORDER BY id ASC FOR UPDATE /",,,,,,,,
+"[distributeJob] SELECT * FROM `matrix` WHERE status = :status ORDER BY id ASC LIMIT 1 FOR UPDATE /",,,,,,,,
+"[distributeJob] UPDATE_MATRIX_STATUS /",,,,,,,,
+"[distributeJob] UPDATE table_registry SET status = :status WHERE table_name = :table_name /",,,,,,,,
+"Distribute job completed.",11.104000,13.182750,20.933750,9.449000,114.468250,15.782742,14.647551,8.832182
+"Clean buffer completed.",0.002500,0.001250,0.001563,0.001438,0.001734,0.001359,0.001520,0.001393
+"Send headers completed.",0.412000,0.199250,0.325500,0.232875,0.288797,0.216031,0.212254,0.179330
+"Open file completed.",0.028750,0.018000,0.024188,0.019188,0.025594,0.017898,0.016527,0.014166
+"Output file completed.",0.737250,3.568000,11.910250,4.653375,20.444063,4.061633,3.772609,2.170842
+"Program completed. Total",31.984000,25.833500,41.973313,22.206594,153.144750,25.059727,22.803293,15.731885
