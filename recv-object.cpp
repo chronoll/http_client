@@ -121,7 +121,7 @@ int main(int argc, char** argv) {
         if (!firstResponseReceived) {
             auto firstResponseReceivedTime = high_resolution_clock::now();
             chrono::duration<double> firstResponseDuration = firstResponseReceivedTime - receiveStartTime; // レスポンス受信までの時間
-            writeLog("Time from request to first response:" + formatDuration(firstResponseDuration), log_file_path);
+            writeLog("Time from request to first response in " + formatDuration(firstResponseDuration), log_file_path);
             firstResponseReceived = true;
         }
         response.append(buffer, len);
@@ -316,7 +316,7 @@ int main(int argc, char** argv) {
     chrono::duration<double> allDuration = allEndTime - allStartTime;
     
     // 実行時間をログに出力
-    writeLog("Process completed successfully. Total execution time: " + formatDuration(allDuration), log_file_path);
+    writeLog("Process completed successfully. Total execution time in " + formatDuration(allDuration), log_file_path);
     writeSeparator(log_file_path);
 
     return 0;
