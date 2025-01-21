@@ -143,7 +143,8 @@ echo "$receive_order" | while read -r desc; do
         echo -n "\"$desc\"" >> "$receive_output"
         grep -v '^#' "$dir_list_file" | grep -v '^$' | while read -r dir; do
             label=$(echo "$dir" | grep -o 'W-[0-9]-[0-9]*')
-            value=$(grep "\"$desc\"" "$temp_dir/recv_$label.csv" | cut -d',' -f2)
+            # 固定文字列として扱うために -F オプションを追加
+            value=$(grep -F "\"$desc\"" "$temp_dir/recv_$label.csv" | cut -d',' -f2)
             echo -n ",$value" >> "$receive_output"
         done
         echo "" >> "$receive_output"
@@ -156,7 +157,8 @@ echo "$send_order" | while read -r desc; do
         echo -n "\"$desc\"" >> "$send_output"
         grep -v '^#' "$dir_list_file" | grep -v '^$' | while read -r dir; do
             label=$(echo "$dir" | grep -o 'W-[0-9]-[0-9]*')
-            value=$(grep "\"$desc\"" "$temp_dir/send_$label.csv" | cut -d',' -f2)
+            # 固定文字列として扱うために -F オプションを追加
+            value=$(grep -F "\"$desc\"" "$temp_dir/send_$label.csv" | cut -d',' -f2)
             echo -n ",$value" >> "$send_output"
         done
         echo "" >> "$send_output"
