@@ -14,7 +14,7 @@ while read PATH_PREFIX; do
 
     echo "Processing $PATH_PREFIX..."
 
-    for i in $(seq 0 $((($num_processes / 4 * 3) - 1))); do
+    for i in $(seq 0 $(($num_processes - 1))); do
         # Extract timestamps
         client_timestamp=$(grep "Sending request:" ${PATH_PREFIX}/client/process_${i}.log | grep -o '[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\.[0-9]\{6\}')
         server_timestamp=$(grep "GET /http_server/send-object.php?ID=${i}[^0-9]" ${PATH_PREFIX}/server/access_log | grep -o '[0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\.[0-9]\{6\}')
