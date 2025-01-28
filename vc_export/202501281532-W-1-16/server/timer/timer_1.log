@@ -1,0 +1,17 @@
+
+[2025-01-17 11:05:22] Program started: Sleep 3s...
+[2025-01-17 11:05:25] Sleep completed
+[2025-01-17 11:05:25] [getGroupStatus] MySQL connection established. Execution time: 0.491 ms
+[2025-01-17 11:05:25] [getGroupStatus] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.743 ms
+[2025-01-17 11:05:25] [getGroupStatus] SELECT status FROM `matrix` WHERE group_id = :group_id / Execution time: 0.645 ms
+[2025-01-17 11:05:25] getGroupStatus completed. Execution time: 2.275 ms
+[2025-01-17 11:05:25] [resetGroupStatus] MySQL connection established. Execution time: 0.478 ms
+[2025-01-17 11:05:25] [resetGroupStatus] SELECT table_name FROM table_registry WHERE id = :job_id FOR UPDATE / Execution time: 0.547 ms
+[2025-01-17 11:05:25] [resetGroupStatus] UPDATE `matrix` SET status = :status WHERE group_id = :group_id / Execution time: 0.723 ms
+[2025-01-17 11:05:25] [resetGroupStatus] UPDATE `matrix` SET client = NULL WHERE group_id = :group_id / Execution time: 0.635 ms
+[2025-01-17 11:05:25] [resetGroupStatus] SELECT COUNT(*) AS total, SUM(...) FROM `matrix` / Execution time: 0.667 ms
+[2025-01-17 11:05:25] [resetGroupStatus] UPDATE table_registry SET status = :status WHERE id = :job_id / Execution time: 0.662 ms
+[2025-01-17 11:05:25] resetGroupStatus completed. Execution time: 6.211 ms
+[2025-01-17 11:05:25] deleteGroupDirectory completed. Execution time: 0.028 ms
+[2025-01-17 11:05:25] Program completed. Total execution time: 3,011.456 ms
+
