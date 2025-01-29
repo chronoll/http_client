@@ -187,7 +187,7 @@ int main(int argc, char** argv) {
     writeLog("File saved to: " + object_path, log_file_path);
 
     // デバッグ用オプションが有効なら、MPIランクが0の場合にプロセスを終了
-    if (exitFlag && stoi(mpiRank) == 0) {
+    if (exitFlag && stoi(groupID) == 1) {
         writeLog("This process is exited. mpiRank: " + mpiRank, log_file_path);
         writeSeparator(log_file_path);
         return 0;
