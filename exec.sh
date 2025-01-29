@@ -24,7 +24,4 @@ sudo rm /opt/lampp/logs/access_log
 sh sql.sh $GROUP $NUM_PROCESSES
 
 # 最初のmpirunにはオプションを渡す
-RECV_OBJECT_OPTION="$OPTION" mpirun -np "$NUM_PROCESSES" ./mpi-launcher &
-sleep 5
-# 2番目のmpirunにはオプションを渡さない
-RECV_OBJECT_OPTION="" mpirun -np 4 ./mpi-launcher
+RECV_OBJECT_OPTION="$OPTION" mpirun -np "$NUM_PROCESSES" ./mpi-launcher

@@ -25,21 +25,25 @@ string getCurrentTimestamp();
 string formatDuration(const duration<double>& duration);
 
 int main(int argc, char** argv) {
-    bool exitFlag = false;
-
     // コマンドライン引数の解析
     if (argc < 2) {
-        cerr << "Usage: " << argv[0] << " <id> [-e]" << endl;
+        cerr << "Usage: " << argv[0] << " <id> [-e|-f]" << endl;
         cerr << "Options:" << endl;
-        cerr << "  -e    Exit if MPI rank is 0" << endl;
+        cerr << "  -e    Exit" << endl;
+        cerr << "  -f    False result" << endl;
         return 1;
     }
+
+    bool exitFlag = false;
+    bool falseFlag = false;
 
     // オプションの確認
     for (int i = 1; i < argc; i++) {
         string arg = argv[i];
         if (arg == "-e") {
             exitFlag = true;
+        } else if (arg == "-f") {
+            falseFlag = true;
         }
     }
     
@@ -195,47 +199,65 @@ int main(int argc, char** argv) {
         return 0;
     }
 
-    /* バイナリに実行権限を付与 */
-    string chmodCommand = "chmod +x " + object_path;
-    system(chmodCommand.c_str());
-    writeLog("Execution permission granted to: " + object_path, log_file_path);
+// デバッグ用オプションが有効なら、groupIDが1の場合に間違った結果を返す
+    if (falseFlag && stoi(groupID) == 1) {
+        writeLog("This process return wrong answer. mpiRank: " + mpiRank, log_file_path, true);
+        
+        // "false"という内容で結果ファイルを上書き
+        ofstream resultFile(result_file_path);
+        if (!resultFile.is_open()) {
+            writeLog("Result file open error when writing false result: " + result_file_path, log_file_path, true);
+            return 1;
+        }
+        resultFile << endl  // 1行目の改行
+            << endl  // 2行目の改行
+            << "id0: " << endl  // 3行目
+            << "Sums = false" << endl;  // 4行目
+        resultFile.close();
+        
+        writeLog("False result written to: " + result_file_path, log_file_path);
+    } else {
+        /* バイナリに実行権限を付与 */
+        string chmodCommand = "chmod +x " + object_path;
+        system(chmodCommand.c_str());
+        writeLog("Execution permission granted to: " + object_path, log_file_path);
 
-    /* バイナリを実行して標準出力の内容を別ファイルに書き込む */
-    string execCommand = "./" + object_path + " " + mpiRank + " " + RankCount;
-    // string execCommand = object_path + " " + mpiRank + " " + RankCount;
-    writeLog("Executing command: " + execCommand, log_file_path);
-    
-    auto execStartTime = high_resolution_clock::now();
+        /* バイナリを実行して標準出力の内容を別ファイルに書き込む */
+        string execCommand = "./" + object_path + " " + mpiRank + " " + RankCount;
+        writeLog("Executing command: " + execCommand, log_file_path);
+        
+        auto execStartTime = high_resolution_clock::now();
 
-    FILE *pipe = popen(execCommand.c_str(), "r");
-    if (pipe == NULL) {
-        writeLog("popen failed", log_file_path, true);
-        return 1;
+        FILE *pipe = popen(execCommand.c_str(), "r");
+        if (pipe == NULL) {
+            writeLog("popen failed", log_file_path, true);
+            return 1;
+        }
+
+        ofstream resultFile(result_file_path);
+        if (!resultFile.is_open()) {
+            writeLog("Result file open error: " + result_file_path, log_file_path, true);
+            return 1;
+        }
+
+        char buf[1024];
+        while (fgets(buf, sizeof(buf), pipe) != NULL) {
+            resultFile << buf;
+        }
+
+        int ret = pclose(pipe);
+        if (ret == -1) {
+            writeLog("pclose failed", log_file_path, true);
+            return 1;
+        }
+
+        auto execEndTime = high_resolution_clock::now();
+        chrono::duration<double> execDuration = execEndTime - execStartTime;
+        writeLog("Command executed in " + formatDuration(execDuration), log_file_path);
+        writeLog("Result saved to: " + result_file_path, log_file_path);
+
+        resultFile.close();
     }
-
-    ofstream resultFile(result_file_path);
-    if (!resultFile.is_open()) {
-        writeLog("Result file open error: " + result_file_path, log_file_path, true);
-        return 1;
-    }
-
-    char buf[1024];
-    while (fgets(buf, sizeof(buf), pipe) != NULL) {
-        resultFile << buf;
-    }
-
-    int ret = pclose(pipe);
-    if (ret == -1) {
-        writeLog("pclose failed", log_file_path, true);
-        return 1;
-    }
-
-    auto execEndTime = high_resolution_clock::now();
-    chrono::duration<double> execDuration = execEndTime - execStartTime;
-    writeLog("Command executed in " + formatDuration(execDuration), log_file_path);
-    writeLog("Result saved to: " + result_file_path, log_file_path);
-
-    resultFile.close();
 
     /* create socket */
     int sock_ = socket(AF_INET, SOCK_STREAM, 0);
