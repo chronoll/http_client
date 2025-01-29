@@ -48,6 +48,8 @@ int main(int argc, char** argv) {
     int id = stoi(argv[1]);
     string object_path = "objects/temp_" + to_string(id);
     string result_file_path = "results/result_" + to_string(id);
+    // string object_path = "/home/vc/kurotaka/objects/temp_" + to_string(id);
+    // string result_file_path = "/home/vc/kurotaka/results/result_" + to_string(id);
     string log_file_path = "logs/process_" + to_string(id) + ".log";  // ログファイルパス
 
     // ログディレクトリが存在しない場合は作成
@@ -200,6 +202,7 @@ int main(int argc, char** argv) {
 
     /* バイナリを実行して標準出力の内容を別ファイルに書き込む */
     string execCommand = "./" + object_path + " " + mpiRank + " " + RankCount;
+    // string execCommand = object_path + " " + mpiRank + " " + RankCount;
     writeLog("Executing command: " + execCommand, log_file_path);
     
     auto execStartTime = high_resolution_clock::now();
