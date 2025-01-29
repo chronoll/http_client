@@ -273,7 +273,7 @@ int main(int argc, char** argv) {
                      "Content-Type: application/octet-stream\r\n"
                      "X-Filename: " + filename + "\r\n"
                      "Content-Length: " + to_string(fileSize) + "\r\n"
-                     "Connection: close\r \n\r\n";
+                     "Connection: close\r\n\r\n";
 
     writeLog("Sending result upload request", log_file_path);
 
