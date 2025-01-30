@@ -21,8 +21,8 @@ rm results/*
 sudo rm /opt/lampp/htdocs/files/*
 sudo rm /opt/lampp/logs/access_log
 
-# sh sql.sh $GROUP 4
-sh sql.sh $GROUP 3
+sh sql.sh $GROUP 4
+# sh sql.sh $GROUP 3
 
 # 最初のmpirunにはオプションを渡す
 RECV_OBJECT_OPTION="$OPTION" mpirun -np "$NUM_PROCESSES" ./mpi-launcher

@@ -223,9 +223,8 @@ int main(int argc, char** argv) {
         writeLog("Execution permission granted to: " + object_path, log_file_path);
 
         /* バイナリを実行して標準出力の内容を別ファイルに書き込む */
-        // string execCommand = "./" + object_path + " " + mpiRank + " " + RankCount;
-        // string execCommand = object_path + " " + mpiRank + " " + RankCount;
-        string execCommand = "./" + object_path + " " + mpiRank;
+        // string execCommand = "./" + object_path + " " + mpiRank + " " + RankCount + " " + groupID;
+        string execCommand = object_path + " " + mpiRank + " " + RankCount + " " + groupID;
         writeLog("Executing command: " + execCommand, log_file_path);
         
         auto execStartTime = high_resolution_clock::now();

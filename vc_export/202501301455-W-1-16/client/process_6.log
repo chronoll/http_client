@@ -1,0 +1,34 @@
+
+[2025-01-30 14:54:46.043957] INFO: Process started with ID: 6
+[2025-01-30 14:54:46.117478] INFO: First connection established in 0.209000ms
+[2025-01-30 14:54:46.149676] INFO: Sending request: GET /http_server/send-object.php?ID=6 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-30 14:54:46.210726] INFO: First request sent in 0.024000ms
+[2025-01-30 14:54:46.244439] INFO: Time from request to first response in 0.029000ms
+[2025-01-30 14:54:46.343284] INFO: Received headers - MPI-Rank: 0, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 1, Rank-Count: 4
+[2025-01-30 14:54:46.380181] INFO: Receive loop #1 received 16384 bytes in 135.805000ms
+[2025-01-30 14:54:46.440281] INFO: Receive loop #2 received 16384 bytes in 0.062000ms
+[2025-01-30 14:54:46.492802] INFO: Receive loop #3 received 16384 bytes in 0.083000ms
+[2025-01-30 14:54:46.585036] INFO: Receive loop #4 received 16384 bytes in 0.110000ms
+[2025-01-30 14:54:46.679339] INFO: Receive loop #5 received 16384 bytes in 0.029000ms
+[2025-01-30 14:54:46.722216] INFO: Receive loop #6 received 16384 bytes in 0.031000ms
+[2025-01-30 14:54:46.777722] INFO: Receive loop #7 received 16384 bytes in 0.029000ms
+[2025-01-30 14:54:46.861586] INFO: Receive loop #8 received 16384 bytes in 0.253000ms
+[2025-01-30 14:54:46.911071] INFO: Receive loop #9 received 16384 bytes in 0.009000ms
+[2025-01-30 14:54:46.987178] INFO: Receive loop #10 received 16384 bytes in 0.039000ms
+[2025-01-30 14:54:47.046859] INFO: Receive loop #11 received 16384 bytes in 0.032000ms
+[2025-01-30 14:54:47.119600] INFO: Receive loop #12 received 7659 bytes in 0.018000ms
+[2025-01-30 14:54:47.158313] INFO: Response received in 914.200000ms
+[2025-01-30 14:54:47.220667] INFO: File saved in 0.489000ms
+[2025-01-30 14:54:47.278866] INFO: File saved to: /home/vc/kurotaka/objects/temp_6
+[2025-01-30 14:54:47.319787] ERROR: This process return wrong answer. mpiRank: 0
+[2025-01-30 14:54:47.397735] INFO: False result written to: /home/vc/kurotaka/results/result_6
+[2025-01-30 14:54:47.439115] INFO: Second connection established in 0.216000ms
+[2025-01-30 14:54:47.559385] INFO: Sending result upload request
+[2025-01-30 14:54:47.594755] INFO: Second request sent in 0.028000ms
+[2025-01-30 14:54:47.699524] INFO: Result uploaded in 0.025000ms
+[2025-01-30 14:54:47.743426] INFO: Process completed successfully. Total execution time in 1721.136000ms
+
