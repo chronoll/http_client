@@ -1,0 +1,8 @@
+
+[2025-01-30 11:54:14] Program started at 2025-01-30 11:54:14.8612
+[2025-01-30 11:54:14] [getClientID] MySQL connection established. Execution time: 0.246 ms
+[2025-01-30 11:54:14] [getClientID] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.342 ms
+[2025-01-30 11:54:14] [getClientID] SELECT client FROM `matrix` WHERE id = :sub_job_id / Execution time: 0.183 ms
+[2025-01-30 11:54:14] getClientID completed. Execution time: 0.866 ms
+[2025-01-30 11:54:14] Client ID mismatch. Expected: , Actual: 222
+
