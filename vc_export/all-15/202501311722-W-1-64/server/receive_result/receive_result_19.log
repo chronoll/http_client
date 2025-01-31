@@ -1,0 +1,24 @@
+
+[2025-01-31 17:22:08] Program started at 2025-01-31 17:22:08.5109
+[2025-01-31 17:22:08] [getClientID] MySQL connection established. Execution time: 0.663 ms
+[2025-01-31 17:22:08] [getClientID] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.359 ms
+[2025-01-31 17:22:08] [getClientID] SELECT client FROM `matrix` WHERE id = :sub_job_id / Execution time: 0.190 ms
+[2025-01-31 17:22:08] getClientID completed. Execution time: 1.341 ms
+[2025-01-31 17:22:08] Read file completed. Execution time: 0.009 ms
+[2025-01-31 17:22:08] File saved successfully: uploads/job_1/group_1/result_24
+[2025-01-31 17:22:08] [updateStatus] MySQL connection established. Execution time: 0.122 ms
+[2025-01-31 17:22:08] [updateStatus] SELECT table_name FROM table_registry WHERE id = :job_id FOR UPDATE / Execution time: 0.199 ms
+[2025-01-31 17:22:08] [updateStatus] UPDATE `matrix` SET status = :status WHERE id = :sub_job_id / Execution time: 0.222 ms
+[2025-01-31 17:22:08] [updateStatus] SELECT COUNT_RECORDS FROM `matrix` / Execution time: 0.335 ms
+[2025-01-31 17:22:08] [updateStatus] SELECT group_id FROM `matrix` ORDER BY id DESC LIMIT 1 / Execution time: 0.164 ms
+[2025-01-31 17:22:08] [updateStatus] UPDATE table_registry SET status = :status WHERE id = :job_id / Execution time: 0.413 ms
+[2025-01-31 17:22:08] updateStatus completed. Execution time: 86.037 ms
+[2025-01-31 17:22:08] Write file completed. Execution time: 86.313 ms
+[2025-01-31 17:22:08] [getGroupStatus] MySQL connection established. Execution time: 0.081 ms
+[2025-01-31 17:22:08] [getGroupStatus] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.320 ms
+[2025-01-31 17:22:08] [getGroupStatus] SELECT status FROM `matrix` WHERE group_id = :group_id / Execution time: 0.419 ms
+[2025-01-31 17:22:08] getGroupStatus completed. Execution time: 1.024 ms
+[2025-01-31 17:22:08] Merge request completed. Execution time (not actual merge.php execution time, but just request): 6.187 ms
+[2025-01-31 17:22:08] Majority request completed. Execution time (not actual script execution time, but just request): 1.854 ms
+[2025-01-31 17:22:08] Program completed. Total execution time: 98.397 ms
+
