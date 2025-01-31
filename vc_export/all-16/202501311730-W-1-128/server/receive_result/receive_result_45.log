@@ -1,0 +1,22 @@
+
+[2025-01-31 17:30:29] Program started at 2025-01-31 17:30:29.2396
+[2025-01-31 17:30:29] [getClientID] MySQL connection established. Execution time: 0.213 ms
+[2025-01-31 17:30:29] [getClientID] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.280 ms
+[2025-01-31 17:30:29] [getClientID] SELECT client FROM `matrix` WHERE id = :sub_job_id / Execution time: 0.149 ms
+[2025-01-31 17:30:29] getClientID completed. Execution time: 0.819 ms
+[2025-01-31 17:30:29] Read file completed. Execution time: 0.013 ms
+[2025-01-31 17:30:29] File saved successfully: uploads/job_1/group_1/result_76
+[2025-01-31 17:30:29] [updateStatus] MySQL connection established. Execution time: 0.105 ms
+[2025-01-31 17:30:29] [updateStatus] SELECT table_name FROM table_registry WHERE id = :job_id FOR UPDATE / Execution time: 0.156 ms
+[2025-01-31 17:30:29] [updateStatus] UPDATE `matrix` SET status = :status WHERE id = :sub_job_id / Execution time: 0.178 ms
+[2025-01-31 17:30:29] [updateStatus] SELECT COUNT_RECORDS FROM `matrix` / Execution time: 0.285 ms
+[2025-01-31 17:30:29] [updateStatus] UPDATE table_registry SET status = :status WHERE id = :job_id / Execution time: 0.125 ms
+[2025-01-31 17:30:29] updateStatus completed. Execution time: 55.794 ms
+[2025-01-31 17:30:29] Write file completed. Execution time: 56.113 ms
+[2025-01-31 17:30:29] [getGroupStatus] MySQL connection established. Execution time: 0.060 ms
+[2025-01-31 17:30:29] [getGroupStatus] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.276 ms
+[2025-01-31 17:30:29] [getGroupStatus] SELECT status FROM `matrix` WHERE group_id = :group_id / Execution time: 0.493 ms
+[2025-01-31 17:30:29] getGroupStatus completed. Execution time: 0.945 ms
+[2025-01-31 17:30:29] Group 1 is not completed yet.
+[2025-01-31 17:30:29] Program completed. Total execution time: 60.612 ms
+
