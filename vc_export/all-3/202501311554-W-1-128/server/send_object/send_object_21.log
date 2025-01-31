@@ -1,0 +1,21 @@
+
+[2025-01-31 15:53:50] Program started at 2025-01-31 15:53:50.7587
+[2025-01-31 15:53:50] [distributeJob] MySQL connection established. Execution time: 0.830 ms
+[2025-01-31 15:53:50] [distributeJob] SELECT * FROM table_registry WHERE status <= :status ORDER BY id ASC FOR UPDATE / Execution time: 0.397 ms
+[2025-01-31 15:53:50] [distributeJob] SELECT * FROM `matrix2` WHERE status = :status ORDER BY id ASC LIMIT 1 FOR UPDATE / Execution time: 0.342 ms
+[2025-01-31 15:53:50] [distributeJob] SELECT * FROM `matrix3` WHERE status = :status ORDER BY id ASC LIMIT 1 FOR UPDATE / Execution time: 0.224 ms
+[2025-01-31 15:53:50] [distributeJob] UPDATE_MATRIX_STATUS / Execution time: 0.264 ms
+[2025-01-31 15:53:50] Distribute job completed. Execution time: 4.116 ms
+[2025-01-31 15:53:50] Clean buffer completed. Execution time: 0.002 ms
+[2025-01-31 15:53:50] Sending headers:
+[2025-01-31 15:53:50]   Content-Length: 16096
+[2025-01-31 15:53:50]   MPI-Rank: 14
+[2025-01-31 15:53:50]   Group-ID: 1
+[2025-01-31 15:53:50]   Job-ID: 3
+[2025-01-31 15:53:50]   Sub-Job-ID: 15
+[2025-01-31 15:53:50]   Rank-Count: 64
+[2025-01-31 15:53:50] Send headers completed. Execution time: 0.259 ms
+[2025-01-31 15:53:50] Open file completed. Execution time: 0.019 ms
+[2025-01-31 15:53:50] Output file completed. Execution time: 0.149 ms
+[2025-01-31 15:53:50] Program completed. Total execution time: 6.781 ms
+
