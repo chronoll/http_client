@@ -1,0 +1,24 @@
+
+[2025-01-31 17:39:39] Program started at 2025-01-31 17:39:39.6113
+[2025-01-31 17:39:39] [getClientID] MySQL connection established. Execution time: 0.752 ms
+[2025-01-31 17:39:39] [getClientID] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.413 ms
+[2025-01-31 17:39:39] [getClientID] SELECT client FROM `matrix` WHERE id = :sub_job_id / Execution time: 0.199 ms
+[2025-01-31 17:39:39] getClientID completed. Execution time: 1.553 ms
+[2025-01-31 17:39:39] Read file completed. Execution time: 0.013 ms
+[2025-01-31 17:39:39] File saved successfully: uploads/job_1/group_1/result_79
+[2025-01-31 17:39:39] [updateStatus] MySQL connection established. Execution time: 0.378 ms
+[2025-01-31 17:39:39] [updateStatus] SELECT table_name FROM table_registry WHERE id = :job_id FOR UPDATE / Execution time: 4.662 ms
+[2025-01-31 17:39:39] [updateStatus] UPDATE `matrix` SET status = :status WHERE id = :sub_job_id / Execution time: 0.281 ms
+[2025-01-31 17:39:39] [updateStatus] SELECT COUNT_RECORDS FROM `matrix` / Execution time: 0.530 ms
+[2025-01-31 17:39:39] [updateStatus] SELECT group_id FROM `matrix` ORDER BY id DESC LIMIT 1 / Execution time: 0.139 ms
+[2025-01-31 17:39:39] [updateStatus] UPDATE table_registry SET status = :status WHERE id = :job_id / Execution time: 0.337 ms
+[2025-01-31 17:39:40] updateStatus completed. Execution time: 435.252 ms
+[2025-01-31 17:39:40] Write file completed. Execution time: 444.017 ms
+[2025-01-31 17:39:40] [getGroupStatus] MySQL connection established. Execution time: 0.060 ms
+[2025-01-31 17:39:40] [getGroupStatus] SELECT table_name FROM table_registry WHERE id = :job_id / Execution time: 0.184 ms
+[2025-01-31 17:39:40] [getGroupStatus] SELECT status FROM `matrix` WHERE group_id = :group_id / Execution time: 0.885 ms
+[2025-01-31 17:39:40] getGroupStatus completed. Execution time: 1.366 ms
+[2025-01-31 17:39:40] Merge request completed. Execution time (not actual merge.php execution time, but just request): 11.768 ms
+[2025-01-31 17:39:40] Majority request completed. Execution time (not actual script execution time, but just request): 1.027 ms
+[2025-01-31 17:39:40] Program completed. Total execution time: 462.893 ms
+
