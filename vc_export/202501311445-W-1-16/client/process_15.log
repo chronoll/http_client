@@ -1,0 +1,35 @@
+
+[2025-01-31 14:44:30.573506] INFO: Process started with ID: 15
+[2025-01-31 14:44:30.586105] INFO: First connection established in 0.123000ms
+[2025-01-31 14:44:30.599932] INFO: Sending request: GET /http_server/send-object.php?ID=15 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-31 14:44:30.612557] INFO: First request sent in 0.011000ms
+[2025-01-31 14:44:30.682832] INFO: Time from request to first response in 48.146000ms
+[2025-01-31 14:44:30.732104] INFO: Received headers - MPI-Rank: 2, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 3, Rank-Count: 4
+[2025-01-31 14:44:30.806688] INFO: Receive loop #1 received 5792 bytes in 132.252000ms
+[2025-01-31 14:44:30.852132] INFO: Receive loop #2 received 16384 bytes in 0.032000ms
+[2025-01-31 14:44:30.964139] INFO: Receive loop #3 received 16384 bytes in 0.074000ms
+[2025-01-31 14:44:30.986427] INFO: Receive loop #4 received 16384 bytes in 0.080000ms
+[2025-01-31 14:44:31.045411] INFO: Receive loop #5 received 16384 bytes in 0.040000ms
+[2025-01-31 14:44:31.119591] INFO: Receive loop #6 received 16384 bytes in 0.024000ms
+[2025-01-31 14:44:31.153645] INFO: Receive loop #7 received 16384 bytes in 0.186000ms
+[2025-01-31 14:44:31.229011] INFO: Receive loop #8 received 16384 bytes in 0.028000ms
+[2025-01-31 14:44:31.309973] INFO: Receive loop #9 received 16384 bytes in 0.028000ms
+[2025-01-31 14:44:31.350388] INFO: Receive loop #10 received 16384 bytes in 0.028000ms
+[2025-01-31 14:44:31.471367] INFO: Receive loop #11 received 16384 bytes in 0.008000ms
+[2025-01-31 14:44:31.518379] INFO: Receive loop #12 received 16384 bytes in 0.321000ms
+[2025-01-31 14:44:31.586217] INFO: Receive loop #13 received 1867 bytes in 0.001000ms
+[2025-01-31 14:44:31.656215] INFO: Response received in 1029.831000ms
+[2025-01-31 14:44:31.734811] INFO: File saved in 0.490000ms
+[2025-01-31 14:44:31.778009] INFO: File saved to: /home/vc/kurotaka/objects/temp_15
+[2025-01-31 14:44:31.811739] ERROR: This process return wrong answer. mpiRank: 2
+[2025-01-31 14:44:31.870337] INFO: False result written to: /home/vc/kurotaka/results/result_15
+[2025-01-31 14:44:31.903772] INFO: Second connection established in 0.075000ms
+[2025-01-31 14:44:31.941305] INFO: Sending result upload request
+[2025-01-31 14:44:31.981160] INFO: Second request sent in 0.025000ms
+[2025-01-31 14:44:32.016539] INFO: Result uploaded in 0.050000ms
+[2025-01-31 14:44:32.061676] INFO: Process completed successfully. Total execution time in 1515.758000ms
+
