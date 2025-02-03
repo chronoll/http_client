@@ -1,9 +1,19 @@
 #!/bin/bash
 
-receive_output="recv_times.csv"
-send_output="send_times.csv"
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <number>"
+    exit 1
+fi
+x=$1
+
+base_dir="all-$x"
+csv_dir="csv/$base_dir"
+receive_output="$csv_dir/recv_times.csv"
+send_output="$csv_dir/send_times.csv"
+dir_list_file="$base_dir/directories.txt"
 temp_dir="temp_results"
-dir_list_file="directories.txt"
+
+mkdir -p "$csv_dir"
 
 # 一時ディレクトリを作成
 mkdir -p "$temp_dir"
@@ -63,7 +73,7 @@ grep -v '^#' "$dir_list_file" | grep -v '^$' | while read -r dir; do
     temp_file="$temp_dir/recv_$label.csv"
     
     # ログファイルの処理
-    for log_file in "$dir/server/receive_result"/receive_result_*.log; do
+    for log_file in "$base_dir/$dir/server/receive_result"/receive_result_*.log; do
         grep -E "([Tt]otal )?[Ee]xecution time[^:]*:" "$log_file" | while read -r line; do
             line=$(echo "$line" | sed 's/^\[[^]]*\] //')
             
@@ -101,7 +111,7 @@ grep -v '^#' "$dir_list_file" | grep -v '^$' | while read -r dir; do
     # send_object の処理
     temp_file="$temp_dir/send_$label.csv"
     
-    for log_file in "$dir/server/send_object"/send_object_*.log; do
+    for log_file in "$base_dir/$dir/server/send_object"/send_object_*.log; do
         grep -E "([Tt]otal )?[Ee]xecution time[^:]*:" "$log_file" | while read -r line; do
             line=$(echo "$line" | sed 's/^\[[^]]*\] //')
             

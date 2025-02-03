@@ -1,8 +1,18 @@
 #!/bin/bash
 
-output_file="csv/client/process.csv"
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <number>"
+    exit 1
+fi
+x=$1
+
+base_dir="all-$x"
+csv_dir="csv/$base_dir"
+output_file="$csv_dir/process.csv"
+dir_list_file="$base_dir/directories.txt"
 temp_dir="temp_results"
-dir_list_file="directories.txt"
+
+mkdir -p "$csv_dir"
 
 # 一時ディレクトリを作成
 mkdir -p "$temp_dir"
@@ -33,7 +43,7 @@ grep -v '^#' "$dir_list_file" | grep -v '^$' | while read -r dir; do
     temp_file="$temp_dir/$label.csv"
     
     # process_*.logファイルの処理
-    for log_file in "$dir/client"/process_*.log; do
+    for log_file in "$base_dir/$dir/client"/process_*.log; do
         grep "ms$" "$log_file" | \
         grep -v "INFO: Receive loop" | \
         while read -r line; do
