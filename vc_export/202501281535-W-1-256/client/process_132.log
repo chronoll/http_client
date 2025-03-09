@@ -1,0 +1,26 @@
+
+[2025-01-28 15:35:00.496914] INFO: Process started with ID: 132
+[2025-01-28 15:35:01.306281] INFO: First connection established in 0.273000ms
+[2025-01-28 15:35:02.070612] INFO: Sending request: GET /http_server/send-object.php?ID=132 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-28 15:35:02.632970] INFO: First request sent in 0.024000ms
+[2025-01-28 15:35:03.185990] INFO: Time from request to first response:0.006000ms
+[2025-01-28 15:35:04.226586] INFO: Received headers - MPI-Rank: 67, Group-ID: 1, Job-ID: 2, Sub-Job-ID: 68, Rank-Count: 128
+[2025-01-28 15:35:05.732202] INFO: Receive loop #1 received 16384 bytes in 2394.827000ms
+[2025-01-28 15:35:06.662287] INFO: Receive loop #2 received 30 bytes in 0.043000ms
+[2025-01-28 15:35:08.360280] INFO: Response received in 4798.733000ms
+[2025-01-28 15:35:09.530811] INFO: File saved in 0.200000ms
+[2025-01-28 15:35:11.598103] INFO: File saved to: /home/vc/kurotaka/objects/temp_132
+[2025-01-28 15:35:12.759108] INFO: Execution permission granted to: /home/vc/kurotaka/objects/temp_132
+[2025-01-28 15:35:14.277190] INFO: Executing command: /home/vc/kurotaka/objects/temp_132 67 128
+[2025-01-28 15:35:16.727719] INFO: Command executed in 2.837000ms
+[2025-01-28 15:35:18.467536] INFO: Result saved to: /home/vc/kurotaka/results/result_132
+[2025-01-28 15:35:20.518128] INFO: Second connection established in 0.205000ms
+[2025-01-28 15:35:22.598150] INFO: Sending result upload request
+[2025-01-28 15:35:24.248480] INFO: Second request sent in 0.029000ms
+[2025-01-28 15:35:25.252608] INFO: Result uploaded in 0.010000ms
+[2025-01-28 15:35:26.362272] INFO: Process completed successfully. Total execution time: 26652.330000ms
+

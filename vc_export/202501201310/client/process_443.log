@@ -1,0 +1,36 @@
+
+[2025-01-20 13:02:41.742628] INFO: Process started with ID: 443
+[2025-01-20 13:02:44.150607] INFO: First connection established in 0.249000ms
+[2025-01-20 13:02:46.383844] INFO: Sending request: GET /http_server/send-object.php?ID=443 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-20 13:02:48.644430] INFO: First request sent in 0.035000ms
+[2025-01-20 13:02:49.880794] INFO: Time from request to first response in 0.027000ms
+[2025-01-20 13:02:52.370527] INFO: Received headers - MPI-Rank: 656, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 657, Rank-Count: 1024
+[2025-01-20 13:02:54.785390] INFO: Receive loop #1 received 16384 bytes in 4625.077000ms
+[2025-01-20 13:02:57.489053] INFO: Receive loop #2 received 16384 bytes in 0.063000ms
+[2025-01-20 13:02:59.559890] INFO: Receive loop #3 received 16384 bytes in 0.076000ms
+[2025-01-20 13:03:02.143350] INFO: Receive loop #4 received 16384 bytes in 0.112000ms
+[2025-01-20 13:03:04.728886] INFO: Receive loop #5 received 16384 bytes in 0.031000ms
+[2025-01-20 13:03:06.409084] INFO: Receive loop #6 received 16384 bytes in 0.032000ms
+[2025-01-20 13:03:07.721687] INFO: Receive loop #7 received 16384 bytes in 0.029000ms
+[2025-01-20 13:03:09.573515] INFO: Receive loop #8 received 16384 bytes in 0.246000ms
+[2025-01-20 13:03:11.807338] INFO: Receive loop #9 received 16384 bytes in 0.030000ms
+[2025-01-20 13:03:14.231291] INFO: Receive loop #10 received 16384 bytes in 0.032000ms
+[2025-01-20 13:03:16.237655] INFO: Receive loop #11 received 16384 bytes in 0.011000ms
+[2025-01-20 13:03:17.492796] INFO: Receive loop #12 received 7666 bytes in 0.019000ms
+[2025-01-20 13:03:19.360409] INFO: Response received in 29290.187000ms
+[2025-01-20 13:04:26.440715] INFO: File saved in 1m 5333.747000ms
+[2025-01-20 13:04:27.364212] INFO: File saved to: objects/temp_443
+[2025-01-20 13:04:32.041601] INFO: Execution permission granted to: objects/temp_443
+[2025-01-20 13:04:33.430393] INFO: Executing command: ./objects/temp_443 656 1024
+[2025-01-20 13:04:41.727565] INFO: Command executed in 6672.491000ms
+[2025-01-20 13:04:43.062367] INFO: Result saved to: results/result_443
+[2025-01-20 13:04:44.845940] INFO: Second connection established in 0.732000ms
+[2025-01-20 13:04:47.277636] INFO: Sending result upload request
+[2025-01-20 13:04:48.585617] INFO: Second request sent in 0.004000ms
+[2025-01-20 13:04:49.411444] INFO: Result uploaded in 0.011000ms
+[2025-01-20 13:04:50.749552] INFO: Process completed successfully. Total execution time in 3m 43536.571000ms
+

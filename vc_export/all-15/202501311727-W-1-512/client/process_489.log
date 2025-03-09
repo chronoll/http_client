@@ -1,0 +1,36 @@
+
+[2025-01-31 17:25:15.912052] INFO: Process started with ID: 489
+[2025-01-31 17:25:18.376974] INFO: First connection established in 0.235000ms
+[2025-01-31 17:25:21.233666] INFO: Sending request: GET /http_server/send-object.php?ID=489 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-31 17:25:23.207495] INFO: First request sent in 0.042000ms
+[2025-01-31 17:25:25.489490] INFO: Time from request to first response in 0.035000ms
+[2025-01-31 17:25:27.766885] INFO: Received headers - MPI-Rank: 295, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 296, Rank-Count: 512
+[2025-01-31 17:25:30.220338] INFO: Receive loop #1 received 16384 bytes in 4890.902000ms
+[2025-01-31 17:25:32.338027] INFO: Receive loop #2 received 16384 bytes in 0.045000ms
+[2025-01-31 17:25:34.116643] INFO: Receive loop #3 received 16384 bytes in 0.084000ms
+[2025-01-31 17:25:36.608375] INFO: Receive loop #4 received 16384 bytes in 0.145000ms
+[2025-01-31 17:25:38.748556] INFO: Receive loop #5 received 16384 bytes in 0.030000ms
+[2025-01-31 17:25:41.275441] INFO: Receive loop #6 received 16384 bytes in 0.032000ms
+[2025-01-31 17:25:43.721714] INFO: Receive loop #7 received 16384 bytes in 0.029000ms
+[2025-01-31 17:25:45.829501] INFO: Receive loop #8 received 16384 bytes in 0.065000ms
+[2025-01-31 17:25:47.746517] INFO: Receive loop #9 received 16384 bytes in 0.006000ms
+[2025-01-31 17:25:49.902711] INFO: Receive loop #10 received 16384 bytes in 0.006000ms
+[2025-01-31 17:25:52.225612] INFO: Receive loop #11 received 16384 bytes in 0.030000ms
+[2025-01-31 17:25:54.879799] INFO: Receive loop #12 received 7665 bytes in 0.019000ms
+[2025-01-31 17:25:56.958571] INFO: Response received in 31167.686000ms
+[2025-01-31 17:25:59.536027] INFO: File saved in 0.486000ms
+[2025-01-31 17:26:02.204094] INFO: File saved to: /home/vc/kurotaka/objects/temp_489
+[2025-01-31 17:26:04.838856] INFO: Execution permission granted to: /home/vc/kurotaka/objects/temp_489
+[2025-01-31 17:26:06.286342] INFO: Executing command: /home/vc/kurotaka/objects/temp_489 295 512 1
+[2025-01-31 17:26:52.125321] INFO: Command executed in 44881.810000ms
+[2025-01-31 17:26:54.703523] INFO: Result saved to: /home/vc/kurotaka/results/result_489
+[2025-01-31 17:26:58.166214] INFO: Second connection established in 0.228000ms
+[2025-01-31 17:27:01.587484] INFO: Sending result upload request
+[2025-01-31 17:27:06.190816] INFO: Second request sent in 0.022000ms
+[2025-01-31 17:27:11.599879] INFO: Result uploaded in 0.011000ms
+[2025-01-31 17:27:16.365138] INFO: Process completed successfully. Total execution time in 2m 22320.545000ms
+

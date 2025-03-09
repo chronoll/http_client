@@ -1,0 +1,37 @@
+
+[2025-01-16 19:22:23.700868] INFO: Process started with ID: 3
+[2025-01-16 19:22:23.731229] INFO: First connection established in 0.140000ms
+[2025-01-16 19:22:23.773287] INFO: Sending request: GET /http_server/send-object.php?ID=3 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-16 19:22:23.834028] INFO: First request sent in 0.025000ms
+[2025-01-16 19:22:23.897178] INFO: Time from request to first response in 36.995000ms
+[2025-01-16 19:22:23.961350] INFO: Received headers - MPI-Rank: 4, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 5, Rank-Count: 8
+[2025-01-16 19:22:24.058061] INFO: Receive loop #1 received 2896 bytes in 161.227000ms
+[2025-01-16 19:22:24.125035] INFO: Receive loop #2 received 16384 bytes in 0.026000ms
+[2025-01-16 19:22:24.208550] INFO: Receive loop #3 received 16384 bytes in 0.069000ms
+[2025-01-16 19:22:24.258287] INFO: Receive loop #4 received 16384 bytes in 0.075000ms
+[2025-01-16 19:22:24.308721] INFO: Receive loop #5 received 16384 bytes in 0.028000ms
+[2025-01-16 19:22:24.358836] INFO: Receive loop #6 received 16384 bytes in 0.147000ms
+[2025-01-16 19:22:24.448289] INFO: Receive loop #7 received 16384 bytes in 0.029000ms
+[2025-01-16 19:22:24.500599] INFO: Receive loop #8 received 16384 bytes in 0.028000ms
+[2025-01-16 19:22:24.550302] INFO: Receive loop #9 received 16384 bytes in 0.028000ms
+[2025-01-16 19:22:24.625734] INFO: Receive loop #10 received 16384 bytes in 0.028000ms
+[2025-01-16 19:22:24.672916] INFO: Receive loop #11 received 16384 bytes in 0.279000ms
+[2025-01-16 19:22:24.742609] INFO: Receive loop #12 received 16384 bytes in 0.029000ms
+[2025-01-16 19:22:24.805049] INFO: Receive loop #13 received 4763 bytes in 0.013000ms
+[2025-01-16 19:22:24.868301] INFO: Response received in 1008.552000ms
+[2025-01-16 19:22:25.238723] INFO: File saved in 317.967000ms
+[2025-01-16 19:22:25.283752] INFO: File saved to: objects/temp_3
+[2025-01-16 19:22:25.403949] INFO: Execution permission granted to: objects/temp_3
+[2025-01-16 19:22:25.432733] INFO: Executing command: ./objects/temp_3 4 8
+[2025-01-16 19:22:26.441471] INFO: Command executed in 984.453000ms
+[2025-01-16 19:22:26.490863] INFO: Result saved to: results/result_3
+[2025-01-16 19:22:26.609065] INFO: Second connection established in 0.217000ms
+[2025-01-16 19:22:26.646606] INFO: Sending result upload request
+[2025-01-16 19:22:26.701136] INFO: Second request sent in 0.025000ms
+[2025-01-16 19:22:26.751953] INFO: Result uploaded in 0.044000ms
+[2025-01-16 19:22:26.825502] INFO: Process completed successfully. Total execution time in 3142.042000ms
+

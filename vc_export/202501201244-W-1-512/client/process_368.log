@@ -1,0 +1,36 @@
+
+[2025-01-20 12:41:37.417221] INFO: Process started with ID: 368
+[2025-01-20 12:41:39.777778] INFO: First connection established in 0.316000ms
+[2025-01-20 12:41:41.392975] INFO: Sending request: GET /http_server/send-object.php?ID=368 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-20 12:41:42.542609] INFO: First request sent in 0.018000ms
+[2025-01-20 12:41:44.248644] INFO: Time from request to first response in 0.032000ms
+[2025-01-20 12:41:46.753589] INFO: Received headers - MPI-Rank: 311, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 312, Rank-Count: 512
+[2025-01-20 12:41:49.112650] INFO: Receive loop #1 received 16384 bytes in 4492.743000ms
+[2025-01-20 12:41:50.947545] INFO: Receive loop #2 received 16384 bytes in 0.075000ms
+[2025-01-20 12:41:52.559843] INFO: Receive loop #3 received 16384 bytes in 0.099000ms
+[2025-01-20 12:41:54.806328] INFO: Receive loop #4 received 16384 bytes in 0.113000ms
+[2025-01-20 12:41:57.139687] INFO: Receive loop #5 received 16384 bytes in 0.035000ms
+[2025-01-20 12:41:59.796502] INFO: Receive loop #6 received 16384 bytes in 0.036000ms
+[2025-01-20 12:42:01.817699] INFO: Receive loop #7 received 16384 bytes in 0.006000ms
+[2025-01-20 12:42:04.160802] INFO: Receive loop #8 received 16384 bytes in 0.248000ms
+[2025-01-20 12:42:06.585213] INFO: Receive loop #9 received 16384 bytes in 0.029000ms
+[2025-01-20 12:42:10.355968] INFO: Receive loop #10 received 16384 bytes in 0.028000ms
+[2025-01-20 12:42:13.089952] INFO: Receive loop #11 received 16384 bytes in 0.007000ms
+[2025-01-20 12:42:14.747429] INFO: Receive loop #12 received 7665 bytes in 0.019000ms
+[2025-01-20 12:42:16.823278] INFO: Response received in 32788.201000ms
+[2025-01-20 12:42:47.350952] INFO: File saved in 28877.584000ms
+[2025-01-20 12:42:47.809219] INFO: File saved to: objects/temp_368
+[2025-01-20 12:42:49.797893] INFO: Execution permission granted to: objects/temp_368
+[2025-01-20 12:42:50.134970] INFO: Executing command: ./objects/temp_368 311 512
+[2025-01-20 12:43:16.815903] INFO: Command executed in 25578.826000ms
+[2025-01-20 12:43:18.983964] INFO: Result saved to: results/result_368
+[2025-01-20 12:43:22.777592] INFO: Second connection established in 0.145000ms
+[2025-01-20 12:43:25.772328] INFO: Sending result upload request
+[2025-01-20 12:43:28.941584] INFO: Second request sent in 0.025000ms
+[2025-01-20 12:43:31.899112] INFO: Result uploaded in 0.044000ms
+[2025-01-20 12:43:36.920352] INFO: Process completed successfully. Total execution time in 2m 26162.922000ms
+

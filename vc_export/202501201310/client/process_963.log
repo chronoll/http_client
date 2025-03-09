@@ -1,0 +1,36 @@
+
+[2025-01-20 13:09:12.779243] INFO: Process started with ID: 963
+[2025-01-20 13:09:15.408818] INFO: First connection established in 0.274000ms
+[2025-01-20 13:09:17.979028] INFO: Sending request: GET /http_server/send-object.php?ID=963 HTTP/1.1
+Host: 192.168.100.3
+Connection: close
+
+
+[2025-01-20 13:09:19.219892] INFO: First request sent in 0.022000ms
+[2025-01-20 13:09:20.557108] INFO: Time from request to first response in 0.012000ms
+[2025-01-20 13:09:23.079123] INFO: Received headers - MPI-Rank: 825, Group-ID: 1, Job-ID: 1, Sub-Job-ID: 826, Rank-Count: 1024
+[2025-01-20 13:09:25.561524] INFO: Receive loop #1 received 16384 bytes in 4667.040000ms
+[2025-01-20 13:09:27.902715] INFO: Receive loop #2 received 16384 bytes in 0.059000ms
+[2025-01-20 13:09:29.360911] INFO: Receive loop #3 received 16384 bytes in 0.077000ms
+[2025-01-20 13:09:31.622279] INFO: Receive loop #4 received 16384 bytes in 0.108000ms
+[2025-01-20 13:09:32.820292] INFO: Receive loop #5 received 16384 bytes in 0.028000ms
+[2025-01-20 13:09:35.035883] INFO: Receive loop #6 received 16384 bytes in 0.028000ms
+[2025-01-20 13:09:37.472341] INFO: Receive loop #7 received 16384 bytes in 0.012000ms
+[2025-01-20 13:09:40.189234] INFO: Receive loop #8 received 16384 bytes in 0.244000ms
+[2025-01-20 13:09:42.569226] INFO: Receive loop #9 received 16384 bytes in 0.029000ms
+[2025-01-20 13:09:44.998990] INFO: Receive loop #10 received 16384 bytes in 0.028000ms
+[2025-01-20 13:09:48.203517] INFO: Receive loop #11 received 16384 bytes in 0.014000ms
+[2025-01-20 13:09:52.100284] INFO: Receive loop #12 received 7666 bytes in 0.022000ms
+[2025-01-20 13:09:54.091002] INFO: Response received in 32652.319000ms
+[2025-01-20 13:11:36.924491] INFO: File saved in 1m 41634.737000ms
+[2025-01-20 13:11:37.335286] INFO: File saved to: objects/temp_963
+[2025-01-20 13:11:37.872801] INFO: Execution permission granted to: objects/temp_963
+[2025-01-20 13:11:38.788270] INFO: Executing command: ./objects/temp_963 825 1024
+[2025-01-20 13:11:41.235474] INFO: Command executed in 1945.864000ms
+[2025-01-20 13:11:41.835512] INFO: Result saved to: results/result_963
+[2025-01-20 13:11:42.169270] INFO: Second connection established in 0.088000ms
+[2025-01-20 13:11:42.276277] INFO: Sending result upload request
+[2025-01-20 13:11:42.377468] INFO: Second request sent in 0.004000ms
+[2025-01-20 13:11:42.521399] INFO: Result uploaded in 0.009000ms
+[2025-01-20 13:11:42.604406] INFO: Process completed successfully. Total execution time in 4m 33416.889000ms
+
