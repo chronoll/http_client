@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>クライアント側実行プログラム</title>
+    <title>分散計算システム クライアント側構成</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -15,94 +15,195 @@
         }
         h1 {
             color: #2c3e50;
-            border-bottom: 2px solid #e74c3c;
+            border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
         }
         h2 {
-            color: #c0392b;
+            color: #2980b9;
             margin-top: 30px;
-            border-left: 5px solid #e74c3c;
+            border-left: 5px solid #3498db;
             padding-left: 10px;
         }
         h3 {
-            color: #d35400;
+            color: #16a085;
         }
-        .program {
-            background-color: #fef5f4;
-            border-left: 3px solid #e74c3c;
+        .module {
+            background-color: #ecf0f1;
+            border-left: 3px solid #3498db;
             margin: 15px 0;
             padding: 10px 15px;
             border-radius: 3px;
         }
-        .program h4 {
+        .module h4 {
             margin-top: 0;
-            color: #c0392b;
+            color: #2980b9;
         }
-        .program p {
+        .module p {
             margin-bottom: 5px;
         }
-        .launch {
-            background-color: #fdf2e9;
-            padding: 10px 15px;
+        .client-module {
+            background-color: #fef9e7;
+            border-left: 3px solid #f39c12;
             margin: 15px 0;
+            padding: 10px 15px;
             border-radius: 3px;
-            border-left: 3px solid #e67e22;
         }
-        .params {
-            background-color: #f9f9f9;
-            padding: 10px;
-            margin-top: 15px;
-            border-radius: 3px;
-            border: 1px dashed #bdc3c7;
-        }
-        .param {
-            margin-left: 20px;
-            margin-bottom: 10px;
-        }
-        .param strong {
+        .client-module h4 {
+            margin-top: 0;
             color: #d35400;
         }
-        code {
-            background-color: #ecf0f1;
-            padding: 2px 5px;
+        .params {
+            background-color: #fdfdfd;
+            border: 1px solid #ddd;
+            padding: 8px;
+            margin-top: 8px;
             border-radius: 3px;
-            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        .params p {
+            margin: 5px 0;
+            font-family: monospace;
+        }
+        .flow-container {
+            margin-top: 40px;
+            border: 1px solid #eee;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .flow-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        .flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .client-side, .server-side {
+            width: 45%;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .client-side {
+            background-color: #fef9e7;
+            border: 1px solid #f39c12;
+        }
+        .server-side {
+            background-color: #ebf5fb;
+            border: 1px solid #3498db;
+        }
+        .arrow {
+            width: 5%;
+            text-align: center;
+            padding-top: 100px;
+            font-size: 24px;
+            color: #7f8c8d;
+        }
+        .component {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .log-section {
+            background-color: #e8f8f5;
+            border-left: 3px solid #1abc9c;
+            margin: 15px 0;
+            padding: 10px 15px;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
-    <h1>クライアント側実行プログラム</h1>
+    <h1>分散計算システム クライアント側構成</h1>
 
-    <h2>主要なクライアントプログラム</h2>
+    <h2>クライアントプログラム</h2>
     
-    <div class="program">
+    <div class="client-module">
         <h4>recv-object.cpp</h4>
         <p>サーバに対してジョブ配布リクエスト・ジョブ実行・計算結果送信を行うクライアントプログラム</p>
-        <p>個々のワーカープロセスとして動作し、サーバと通信を行います</p>
     </div>
     
-    <div class="program">
+    <h2>MPI関連</h2>
+    <div class="client-module">
         <h4>mpi-launcher.cpp</h4>
         <p>MPIでrecv-object.cppを実行し、擬似的に複数台動作させるプログラム</p>
-        <p>一台のマシンで複数のワーカープロセスをシミュレートします</p>
     </div>
 
-    <h2>起動方法</h2>
-    
-    <div class="launch">
-        <h4>スクリプトファイル</h4>
-        <p><code>ローカル環境用</code>: <strong>exec.sh</strong></p>
-        <p><code>VCクラスタ環境用</code>: <strong>exec_vc.sh</strong></p>
-        
+    <h2>起動スクリプト</h2>
+    <div class="module">
+        <h4>ローカル環境: exec.sh</h4>
         <div class="params">
-            <h4>設定パラメータ</h4>
-            <div class="param">
-                <strong>GROUP</strong>: グループ数
-                <p>タスクをグループ化する単位を指定します</p>
+            <p>GROUP: グループ数</p>
+            <p>NUM_PROCESSES: プロセス数</p>
+        </div>
+    </div>
+    
+    <div class="module">
+        <h4>VCクラスタ環境: exec_vc.sh</h4>
+        <div class="params">
+            <p>GROUP: グループ数</p>
+            <p>NUM_PROCESSES: プロセス数</p>
+        </div>
+    </div>
+    
+    <h2>VCクラスタでのログ管理</h2>
+    <div class="log-section">
+        <h4>extract_log.sh</h4>
+        <p>VCクラスタのhtdocsのログファイルから、指定したプロセス数の数だけログを取得するスクリプト</p>
+    </div>
+    
+    <div class="log-section">
+        <h4>vc_export/</h4>
+        <p>まとめたログファイルに対して、csv等を出力して整理するプログラム群</p>
+    </div>
+    
+    <div class="flow-container">
+        <h3 class="flow-title">システム全体の連携図</h3>
+        
+        <div class="flow">
+            <div class="client-side">
+                <h4>クライアント側</h4>
+                <div class="component">
+                    <strong>recv-object.cpp</strong><br>
+                    ジョブ配布リクエスト送信
+                </div>
+                <div style="text-align: center; margin: 10px 0;">↓</div>
+                <div class="component">
+                    <strong>計算処理実行</strong><br>
+                    配布されたバイナリを実行
+                </div>
+                <div style="text-align: center; margin: 10px 0;">↓</div>
+                <div class="component">
+                    <strong>結果送信</strong><br>
+                    計算結果をサーバに送信
+                </div>
             </div>
-            <div class="param">
-                <strong>NUM_PROCESSES</strong>: プロセス数
-                <p>同時に実行するワーカープロセスの数を指定します</p>
+            
+            <div class="arrow">↔</div>
+            
+            <div class="server-side">
+                <h4>サーバ側</h4>
+                <div class="component">
+                    <strong>send-object.php</strong><br>
+                    ジョブバイナリ送信
+                </div>
+                <div style="text-align: center; margin: 10px 0;">↓</div>
+                <div class="component">
+                    <strong>receive-result.php</strong><br>
+                    計算結果受信・DB更新
+                </div>
+                <div style="text-align: center; margin: 10px 0;">↓</div>
+                <div class="component">
+                    <strong>結果マージ処理</strong><br>
+                    merge.php/merge-matrix.php
+                </div>
+                <div style="text-align: center; margin: 10px 0;">↓</div>
+                <div class="component">
+                    <strong>多数決処理</strong><br>
+                    majority.php/m-first.php
+                </div>
             </div>
         </div>
     </div>
