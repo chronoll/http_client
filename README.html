@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クライアント側実行プログラム</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #c0392b;
+            margin-top: 30px;
+            border-left: 5px solid #e74c3c;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #d35400;
+        }
+        .program {
+            background-color: #fef5f4;
+            border-left: 3px solid #e74c3c;
+            margin: 15px 0;
+            padding: 10px 15px;
+            border-radius: 3px;
+        }
+        .program h4 {
+            margin-top: 0;
+            color: #c0392b;
+        }
+        .program p {
+            margin-bottom: 5px;
+        }
+        .launch {
+            background-color: #fdf2e9;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+            border-left: 3px solid #e67e22;
+        }
+        .params {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 3px;
+            border: 1px dashed #bdc3c7;
+        }
+        .param {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        .param strong {
+            color: #d35400;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>クライアント側実行プログラム</h1>
+
+    <h2>主要なクライアントプログラム</h2>
+    
+    <div class="program">
+        <h4>recv-object.cpp</h4>
+        <p>サーバに対してジョブ配布リクエスト・ジョブ実行・計算結果送信を行うクライアントプログラム</p>
+        <p>個々のワーカープロセスとして動作し、サーバと通信を行います</p>
+    </div>
+    
+    <div class="program">
+        <h4>mpi-launcher.cpp</h4>
+        <p>MPIでrecv-object.cppを実行し、擬似的に複数台動作させるプログラム</p>
+        <p>一台のマシンで複数のワーカープロセスをシミュレートします</p>
+    </div>
+
+    <h2>起動方法</h2>
+    
+    <div class="launch">
+        <h4>スクリプトファイル</h4>
+        <p><code>ローカル環境用</code>: <strong>exec.sh</strong></p>
+        <p><code>VCクラスタ環境用</code>: <strong>exec_vc.sh</strong></p>
+        
+        <div class="params">
+            <h4>設定パラメータ</h4>
+            <div class="param">
+                <strong>GROUP</strong>: グループ数
+                <p>タスクをグループ化する単位を指定します</p>
+            </div>
+            <div class="param">
+                <strong>NUM_PROCESSES</strong>: プロセス数
+                <p>同時に実行するワーカープロセスの数を指定します</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
